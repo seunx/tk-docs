@@ -1,4 +1,3 @@
-# endpoint: https://us1.prisma.sh/seun-ab8503/tkdocs/dev
 endpoint: http://localhost:4466
 datamodel: datamodel.gql
 
