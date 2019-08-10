@@ -1,0 +1,1491 @@
+type AggregateLesson {
+  count: Int!
+}
+
+type AggregateModule {
+  count: Int!
+}
+
+type AggregateNote {
+  count: Int!
+}
+
+type AggregateSprint {
+  count: Int!
+}
+
+type AggregateTrack {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Lesson {
+  id: ID!
+  name: String!
+  description: String!
+  module: Module!
+  details: String!
+}
+
+type LessonConnection {
+  pageInfo: PageInfo!
+  edges: [LessonEdge]!
+  aggregate: AggregateLesson!
+}
+
+input LessonCreateInput {
+  id: ID
+  name: String!
+  description: String!
+  module: ModuleCreateOneWithoutLessonsInput!
+  details: String!
+}
+
+input LessonCreateManyWithoutModuleInput {
+  create: [LessonCreateWithoutModuleInput!]
+  connect: [LessonWhereUniqueInput!]
+}
+
+input LessonCreateOneInput {
+  create: LessonCreateInput
+  connect: LessonWhereUniqueInput
+}
+
+input LessonCreateWithoutModuleInput {
+  id: ID
+  name: String!
+  description: String!
+  details: String!
+}
+
+type LessonEdge {
+  node: Lesson!
+  cursor: String!
+}
+
+enum LessonOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  details_ASC
+  details_DESC
+}
+
+type LessonPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  details: String!
+}
+
+input LessonScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  details: String
+  details_not: String
+  details_in: [String!]
+  details_not_in: [String!]
+  details_lt: String
+  details_lte: String
+  details_gt: String
+  details_gte: String
+  details_contains: String
+  details_not_contains: String
+  details_starts_with: String
+  details_not_starts_with: String
+  details_ends_with: String
+  details_not_ends_with: String
+  AND: [LessonScalarWhereInput!]
+  OR: [LessonScalarWhereInput!]
+  NOT: [LessonScalarWhereInput!]
+}
+
+type LessonSubscriptionPayload {
+  mutation: MutationType!
+  node: Lesson
+  updatedFields: [String!]
+  previousValues: LessonPreviousValues
+}
+
+input LessonSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LessonWhereInput
+  AND: [LessonSubscriptionWhereInput!]
+  OR: [LessonSubscriptionWhereInput!]
+  NOT: [LessonSubscriptionWhereInput!]
+}
+
+input LessonUpdateDataInput {
+  name: String
+  description: String
+  module: ModuleUpdateOneRequiredWithoutLessonsInput
+  details: String
+}
+
+input LessonUpdateInput {
+  name: String
+  description: String
+  module: ModuleUpdateOneRequiredWithoutLessonsInput
+  details: String
+}
+
+input LessonUpdateManyDataInput {
+  name: String
+  description: String
+  details: String
+}
+
+input LessonUpdateManyMutationInput {
+  name: String
+  description: String
+  details: String
+}
+
+input LessonUpdateManyWithoutModuleInput {
+  create: [LessonCreateWithoutModuleInput!]
+  delete: [LessonWhereUniqueInput!]
+  connect: [LessonWhereUniqueInput!]
+  set: [LessonWhereUniqueInput!]
+  disconnect: [LessonWhereUniqueInput!]
+  update: [LessonUpdateWithWhereUniqueWithoutModuleInput!]
+  upsert: [LessonUpsertWithWhereUniqueWithoutModuleInput!]
+  deleteMany: [LessonScalarWhereInput!]
+  updateMany: [LessonUpdateManyWithWhereNestedInput!]
+}
+
+input LessonUpdateManyWithWhereNestedInput {
+  where: LessonScalarWhereInput!
+  data: LessonUpdateManyDataInput!
+}
+
+input LessonUpdateOneRequiredInput {
+  create: LessonCreateInput
+  update: LessonUpdateDataInput
+  upsert: LessonUpsertNestedInput
+  connect: LessonWhereUniqueInput
+}
+
+input LessonUpdateWithoutModuleDataInput {
+  name: String
+  description: String
+  details: String
+}
+
+input LessonUpdateWithWhereUniqueWithoutModuleInput {
+  where: LessonWhereUniqueInput!
+  data: LessonUpdateWithoutModuleDataInput!
+}
+
+input LessonUpsertNestedInput {
+  update: LessonUpdateDataInput!
+  create: LessonCreateInput!
+}
+
+input LessonUpsertWithWhereUniqueWithoutModuleInput {
+  where: LessonWhereUniqueInput!
+  update: LessonUpdateWithoutModuleDataInput!
+  create: LessonCreateWithoutModuleInput!
+}
+
+input LessonWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  module: ModuleWhereInput
+  details: String
+  details_not: String
+  details_in: [String!]
+  details_not_in: [String!]
+  details_lt: String
+  details_lte: String
+  details_gt: String
+  details_gte: String
+  details_contains: String
+  details_not_contains: String
+  details_starts_with: String
+  details_not_starts_with: String
+  details_ends_with: String
+  details_not_ends_with: String
+  AND: [LessonWhereInput!]
+  OR: [LessonWhereInput!]
+  NOT: [LessonWhereInput!]
+}
+
+input LessonWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Module {
+  id: ID!
+  name: String!
+  description: String!
+  sprint: Sprint!
+  lessons(where: LessonWhereInput, orderBy: LessonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Lesson!]
+}
+
+type ModuleConnection {
+  pageInfo: PageInfo!
+  edges: [ModuleEdge]!
+  aggregate: AggregateModule!
+}
+
+input ModuleCreateInput {
+  id: ID
+  name: String!
+  description: String!
+  sprint: SprintCreateOneWithoutModulesInput!
+  lessons: LessonCreateManyWithoutModuleInput
+}
+
+input ModuleCreateManyWithoutSprintInput {
+  create: [ModuleCreateWithoutSprintInput!]
+  connect: [ModuleWhereUniqueInput!]
+}
+
+input ModuleCreateOneWithoutLessonsInput {
+  create: ModuleCreateWithoutLessonsInput
+  connect: ModuleWhereUniqueInput
+}
+
+input ModuleCreateWithoutLessonsInput {
+  id: ID
+  name: String!
+  description: String!
+  sprint: SprintCreateOneWithoutModulesInput!
+}
+
+input ModuleCreateWithoutSprintInput {
+  id: ID
+  name: String!
+  description: String!
+  lessons: LessonCreateManyWithoutModuleInput
+}
+
+type ModuleEdge {
+  node: Module!
+  cursor: String!
+}
+
+enum ModuleOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+}
+
+type ModulePreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+input ModuleScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [ModuleScalarWhereInput!]
+  OR: [ModuleScalarWhereInput!]
+  NOT: [ModuleScalarWhereInput!]
+}
+
+type ModuleSubscriptionPayload {
+  mutation: MutationType!
+  node: Module
+  updatedFields: [String!]
+  previousValues: ModulePreviousValues
+}
+
+input ModuleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ModuleWhereInput
+  AND: [ModuleSubscriptionWhereInput!]
+  OR: [ModuleSubscriptionWhereInput!]
+  NOT: [ModuleSubscriptionWhereInput!]
+}
+
+input ModuleUpdateInput {
+  name: String
+  description: String
+  sprint: SprintUpdateOneRequiredWithoutModulesInput
+  lessons: LessonUpdateManyWithoutModuleInput
+}
+
+input ModuleUpdateManyDataInput {
+  name: String
+  description: String
+}
+
+input ModuleUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input ModuleUpdateManyWithoutSprintInput {
+  create: [ModuleCreateWithoutSprintInput!]
+  delete: [ModuleWhereUniqueInput!]
+  connect: [ModuleWhereUniqueInput!]
+  set: [ModuleWhereUniqueInput!]
+  disconnect: [ModuleWhereUniqueInput!]
+  update: [ModuleUpdateWithWhereUniqueWithoutSprintInput!]
+  upsert: [ModuleUpsertWithWhereUniqueWithoutSprintInput!]
+  deleteMany: [ModuleScalarWhereInput!]
+  updateMany: [ModuleUpdateManyWithWhereNestedInput!]
+}
+
+input ModuleUpdateManyWithWhereNestedInput {
+  where: ModuleScalarWhereInput!
+  data: ModuleUpdateManyDataInput!
+}
+
+input ModuleUpdateOneRequiredWithoutLessonsInput {
+  create: ModuleCreateWithoutLessonsInput
+  update: ModuleUpdateWithoutLessonsDataInput
+  upsert: ModuleUpsertWithoutLessonsInput
+  connect: ModuleWhereUniqueInput
+}
+
+input ModuleUpdateWithoutLessonsDataInput {
+  name: String
+  description: String
+  sprint: SprintUpdateOneRequiredWithoutModulesInput
+}
+
+input ModuleUpdateWithoutSprintDataInput {
+  name: String
+  description: String
+  lessons: LessonUpdateManyWithoutModuleInput
+}
+
+input ModuleUpdateWithWhereUniqueWithoutSprintInput {
+  where: ModuleWhereUniqueInput!
+  data: ModuleUpdateWithoutSprintDataInput!
+}
+
+input ModuleUpsertWithoutLessonsInput {
+  update: ModuleUpdateWithoutLessonsDataInput!
+  create: ModuleCreateWithoutLessonsInput!
+}
+
+input ModuleUpsertWithWhereUniqueWithoutSprintInput {
+  where: ModuleWhereUniqueInput!
+  update: ModuleUpdateWithoutSprintDataInput!
+  create: ModuleCreateWithoutSprintInput!
+}
+
+input ModuleWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  sprint: SprintWhereInput
+  lessons_every: LessonWhereInput
+  lessons_some: LessonWhereInput
+  lessons_none: LessonWhereInput
+  AND: [ModuleWhereInput!]
+  OR: [ModuleWhereInput!]
+  NOT: [ModuleWhereInput!]
+}
+
+input ModuleWhereUniqueInput {
+  id: ID
+}
+
+type Mutation {
+  createLesson(data: LessonCreateInput!): Lesson!
+  updateLesson(data: LessonUpdateInput!, where: LessonWhereUniqueInput!): Lesson
+  updateManyLessons(data: LessonUpdateManyMutationInput!, where: LessonWhereInput): BatchPayload!
+  upsertLesson(where: LessonWhereUniqueInput!, create: LessonCreateInput!, update: LessonUpdateInput!): Lesson!
+  deleteLesson(where: LessonWhereUniqueInput!): Lesson
+  deleteManyLessons(where: LessonWhereInput): BatchPayload!
+  createModule(data: ModuleCreateInput!): Module!
+  updateModule(data: ModuleUpdateInput!, where: ModuleWhereUniqueInput!): Module
+  updateManyModules(data: ModuleUpdateManyMutationInput!, where: ModuleWhereInput): BatchPayload!
+  upsertModule(where: ModuleWhereUniqueInput!, create: ModuleCreateInput!, update: ModuleUpdateInput!): Module!
+  deleteModule(where: ModuleWhereUniqueInput!): Module
+  deleteManyModules(where: ModuleWhereInput): BatchPayload!
+  createNote(data: NoteCreateInput!): Note!
+  updateNote(data: NoteUpdateInput!, where: NoteWhereUniqueInput!): Note
+  updateManyNotes(data: NoteUpdateManyMutationInput!, where: NoteWhereInput): BatchPayload!
+  upsertNote(where: NoteWhereUniqueInput!, create: NoteCreateInput!, update: NoteUpdateInput!): Note!
+  deleteNote(where: NoteWhereUniqueInput!): Note
+  deleteManyNotes(where: NoteWhereInput): BatchPayload!
+  createSprint(data: SprintCreateInput!): Sprint!
+  updateSprint(data: SprintUpdateInput!, where: SprintWhereUniqueInput!): Sprint
+  updateManySprints(data: SprintUpdateManyMutationInput!, where: SprintWhereInput): BatchPayload!
+  upsertSprint(where: SprintWhereUniqueInput!, create: SprintCreateInput!, update: SprintUpdateInput!): Sprint!
+  deleteSprint(where: SprintWhereUniqueInput!): Sprint
+  deleteManySprints(where: SprintWhereInput): BatchPayload!
+  createTrack(data: TrackCreateInput!): Track!
+  updateTrack(data: TrackUpdateInput!, where: TrackWhereUniqueInput!): Track
+  updateManyTracks(data: TrackUpdateManyMutationInput!, where: TrackWhereInput): BatchPayload!
+  upsertTrack(where: TrackWhereUniqueInput!, create: TrackCreateInput!, update: TrackUpdateInput!): Track!
+  deleteTrack(where: TrackWhereUniqueInput!): Track
+  deleteManyTracks(where: TrackWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type Note {
+  id: ID!
+  user: User!
+  lesson: Lesson!
+  details: String!
+}
+
+type NoteConnection {
+  pageInfo: PageInfo!
+  edges: [NoteEdge]!
+  aggregate: AggregateNote!
+}
+
+input NoteCreateInput {
+  id: ID
+  user: UserCreateOneWithoutNotesInput!
+  lesson: LessonCreateOneInput!
+  details: String!
+}
+
+input NoteCreateManyWithoutUserInput {
+  create: [NoteCreateWithoutUserInput!]
+  connect: [NoteWhereUniqueInput!]
+}
+
+input NoteCreateWithoutUserInput {
+  id: ID
+  lesson: LessonCreateOneInput!
+  details: String!
+}
+
+type NoteEdge {
+  node: Note!
+  cursor: String!
+}
+
+enum NoteOrderByInput {
+  id_ASC
+  id_DESC
+  details_ASC
+  details_DESC
+}
+
+type NotePreviousValues {
+  id: ID!
+  details: String!
+}
+
+input NoteScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  details: String
+  details_not: String
+  details_in: [String!]
+  details_not_in: [String!]
+  details_lt: String
+  details_lte: String
+  details_gt: String
+  details_gte: String
+  details_contains: String
+  details_not_contains: String
+  details_starts_with: String
+  details_not_starts_with: String
+  details_ends_with: String
+  details_not_ends_with: String
+  AND: [NoteScalarWhereInput!]
+  OR: [NoteScalarWhereInput!]
+  NOT: [NoteScalarWhereInput!]
+}
+
+type NoteSubscriptionPayload {
+  mutation: MutationType!
+  node: Note
+  updatedFields: [String!]
+  previousValues: NotePreviousValues
+}
+
+input NoteSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NoteWhereInput
+  AND: [NoteSubscriptionWhereInput!]
+  OR: [NoteSubscriptionWhereInput!]
+  NOT: [NoteSubscriptionWhereInput!]
+}
+
+input NoteUpdateInput {
+  user: UserUpdateOneRequiredWithoutNotesInput
+  lesson: LessonUpdateOneRequiredInput
+  details: String
+}
+
+input NoteUpdateManyDataInput {
+  details: String
+}
+
+input NoteUpdateManyMutationInput {
+  details: String
+}
+
+input NoteUpdateManyWithoutUserInput {
+  create: [NoteCreateWithoutUserInput!]
+  delete: [NoteWhereUniqueInput!]
+  connect: [NoteWhereUniqueInput!]
+  set: [NoteWhereUniqueInput!]
+  disconnect: [NoteWhereUniqueInput!]
+  update: [NoteUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [NoteUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [NoteScalarWhereInput!]
+  updateMany: [NoteUpdateManyWithWhereNestedInput!]
+}
+
+input NoteUpdateManyWithWhereNestedInput {
+  where: NoteScalarWhereInput!
+  data: NoteUpdateManyDataInput!
+}
+
+input NoteUpdateWithoutUserDataInput {
+  lesson: LessonUpdateOneRequiredInput
+  details: String
+}
+
+input NoteUpdateWithWhereUniqueWithoutUserInput {
+  where: NoteWhereUniqueInput!
+  data: NoteUpdateWithoutUserDataInput!
+}
+
+input NoteUpsertWithWhereUniqueWithoutUserInput {
+  where: NoteWhereUniqueInput!
+  update: NoteUpdateWithoutUserDataInput!
+  create: NoteCreateWithoutUserInput!
+}
+
+input NoteWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  lesson: LessonWhereInput
+  details: String
+  details_not: String
+  details_in: [String!]
+  details_not_in: [String!]
+  details_lt: String
+  details_lte: String
+  details_gt: String
+  details_gte: String
+  details_contains: String
+  details_not_contains: String
+  details_starts_with: String
+  details_not_starts_with: String
+  details_ends_with: String
+  details_not_ends_with: String
+  AND: [NoteWhereInput!]
+  OR: [NoteWhereInput!]
+  NOT: [NoteWhereInput!]
+}
+
+input NoteWhereUniqueInput {
+  id: ID
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  lesson(where: LessonWhereUniqueInput!): Lesson
+  lessons(where: LessonWhereInput, orderBy: LessonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Lesson]!
+  lessonsConnection(where: LessonWhereInput, orderBy: LessonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LessonConnection!
+  module(where: ModuleWhereUniqueInput!): Module
+  modules(where: ModuleWhereInput, orderBy: ModuleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Module]!
+  modulesConnection(where: ModuleWhereInput, orderBy: ModuleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ModuleConnection!
+  note(where: NoteWhereUniqueInput!): Note
+  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note]!
+  notesConnection(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NoteConnection!
+  sprint(where: SprintWhereUniqueInput!): Sprint
+  sprints(where: SprintWhereInput, orderBy: SprintOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Sprint]!
+  sprintsConnection(where: SprintWhereInput, orderBy: SprintOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SprintConnection!
+  track(where: TrackWhereUniqueInput!): Track
+  tracks(where: TrackWhereInput, orderBy: TrackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Track]!
+  tracksConnection(where: TrackWhereInput, orderBy: TrackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TrackConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+type Sprint {
+  id: ID!
+  name: String!
+  description: String!
+  track: Track!
+  modules(where: ModuleWhereInput, orderBy: ModuleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Module!]
+}
+
+type SprintConnection {
+  pageInfo: PageInfo!
+  edges: [SprintEdge]!
+  aggregate: AggregateSprint!
+}
+
+input SprintCreateInput {
+  id: ID
+  name: String!
+  description: String!
+  track: TrackCreateOneWithoutSprintsInput!
+  modules: ModuleCreateManyWithoutSprintInput
+}
+
+input SprintCreateManyWithoutTrackInput {
+  create: [SprintCreateWithoutTrackInput!]
+  connect: [SprintWhereUniqueInput!]
+}
+
+input SprintCreateOneWithoutModulesInput {
+  create: SprintCreateWithoutModulesInput
+  connect: SprintWhereUniqueInput
+}
+
+input SprintCreateWithoutModulesInput {
+  id: ID
+  name: String!
+  description: String!
+  track: TrackCreateOneWithoutSprintsInput!
+}
+
+input SprintCreateWithoutTrackInput {
+  id: ID
+  name: String!
+  description: String!
+  modules: ModuleCreateManyWithoutSprintInput
+}
+
+type SprintEdge {
+  node: Sprint!
+  cursor: String!
+}
+
+enum SprintOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+}
+
+type SprintPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+input SprintScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [SprintScalarWhereInput!]
+  OR: [SprintScalarWhereInput!]
+  NOT: [SprintScalarWhereInput!]
+}
+
+type SprintSubscriptionPayload {
+  mutation: MutationType!
+  node: Sprint
+  updatedFields: [String!]
+  previousValues: SprintPreviousValues
+}
+
+input SprintSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SprintWhereInput
+  AND: [SprintSubscriptionWhereInput!]
+  OR: [SprintSubscriptionWhereInput!]
+  NOT: [SprintSubscriptionWhereInput!]
+}
+
+input SprintUpdateInput {
+  name: String
+  description: String
+  track: TrackUpdateOneRequiredWithoutSprintsInput
+  modules: ModuleUpdateManyWithoutSprintInput
+}
+
+input SprintUpdateManyDataInput {
+  name: String
+  description: String
+}
+
+input SprintUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input SprintUpdateManyWithoutTrackInput {
+  create: [SprintCreateWithoutTrackInput!]
+  delete: [SprintWhereUniqueInput!]
+  connect: [SprintWhereUniqueInput!]
+  set: [SprintWhereUniqueInput!]
+  disconnect: [SprintWhereUniqueInput!]
+  update: [SprintUpdateWithWhereUniqueWithoutTrackInput!]
+  upsert: [SprintUpsertWithWhereUniqueWithoutTrackInput!]
+  deleteMany: [SprintScalarWhereInput!]
+  updateMany: [SprintUpdateManyWithWhereNestedInput!]
+}
+
+input SprintUpdateManyWithWhereNestedInput {
+  where: SprintScalarWhereInput!
+  data: SprintUpdateManyDataInput!
+}
+
+input SprintUpdateOneRequiredWithoutModulesInput {
+  create: SprintCreateWithoutModulesInput
+  update: SprintUpdateWithoutModulesDataInput
+  upsert: SprintUpsertWithoutModulesInput
+  connect: SprintWhereUniqueInput
+}
+
+input SprintUpdateWithoutModulesDataInput {
+  name: String
+  description: String
+  track: TrackUpdateOneRequiredWithoutSprintsInput
+}
+
+input SprintUpdateWithoutTrackDataInput {
+  name: String
+  description: String
+  modules: ModuleUpdateManyWithoutSprintInput
+}
+
+input SprintUpdateWithWhereUniqueWithoutTrackInput {
+  where: SprintWhereUniqueInput!
+  data: SprintUpdateWithoutTrackDataInput!
+}
+
+input SprintUpsertWithoutModulesInput {
+  update: SprintUpdateWithoutModulesDataInput!
+  create: SprintCreateWithoutModulesInput!
+}
+
+input SprintUpsertWithWhereUniqueWithoutTrackInput {
+  where: SprintWhereUniqueInput!
+  update: SprintUpdateWithoutTrackDataInput!
+  create: SprintCreateWithoutTrackInput!
+}
+
+input SprintWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  track: TrackWhereInput
+  modules_every: ModuleWhereInput
+  modules_some: ModuleWhereInput
+  modules_none: ModuleWhereInput
+  AND: [SprintWhereInput!]
+  OR: [SprintWhereInput!]
+  NOT: [SprintWhereInput!]
+}
+
+input SprintWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  lesson(where: LessonSubscriptionWhereInput): LessonSubscriptionPayload
+  module(where: ModuleSubscriptionWhereInput): ModuleSubscriptionPayload
+  note(where: NoteSubscriptionWhereInput): NoteSubscriptionPayload
+  sprint(where: SprintSubscriptionWhereInput): SprintSubscriptionPayload
+  track(where: TrackSubscriptionWhereInput): TrackSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Track {
+  id: ID!
+  name: String!
+  description: String!
+  details: String!
+  sprints(where: SprintWhereInput, orderBy: SprintOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Sprint!]
+}
+
+type TrackConnection {
+  pageInfo: PageInfo!
+  edges: [TrackEdge]!
+  aggregate: AggregateTrack!
+}
+
+input TrackCreateInput {
+  id: ID
+  name: String!
+  description: String!
+  details: String!
+  sprints: SprintCreateManyWithoutTrackInput
+}
+
+input TrackCreateOneWithoutSprintsInput {
+  create: TrackCreateWithoutSprintsInput
+  connect: TrackWhereUniqueInput
+}
+
+input TrackCreateWithoutSprintsInput {
+  id: ID
+  name: String!
+  description: String!
+  details: String!
+}
+
+type TrackEdge {
+  node: Track!
+  cursor: String!
+}
+
+enum TrackOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  details_ASC
+  details_DESC
+}
+
+type TrackPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  details: String!
+}
+
+type TrackSubscriptionPayload {
+  mutation: MutationType!
+  node: Track
+  updatedFields: [String!]
+  previousValues: TrackPreviousValues
+}
+
+input TrackSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TrackWhereInput
+  AND: [TrackSubscriptionWhereInput!]
+  OR: [TrackSubscriptionWhereInput!]
+  NOT: [TrackSubscriptionWhereInput!]
+}
+
+input TrackUpdateInput {
+  name: String
+  description: String
+  details: String
+  sprints: SprintUpdateManyWithoutTrackInput
+}
+
+input TrackUpdateManyMutationInput {
+  name: String
+  description: String
+  details: String
+}
+
+input TrackUpdateOneRequiredWithoutSprintsInput {
+  create: TrackCreateWithoutSprintsInput
+  update: TrackUpdateWithoutSprintsDataInput
+  upsert: TrackUpsertWithoutSprintsInput
+  connect: TrackWhereUniqueInput
+}
+
+input TrackUpdateWithoutSprintsDataInput {
+  name: String
+  description: String
+  details: String
+}
+
+input TrackUpsertWithoutSprintsInput {
+  update: TrackUpdateWithoutSprintsDataInput!
+  create: TrackCreateWithoutSprintsInput!
+}
+
+input TrackWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  details: String
+  details_not: String
+  details_in: [String!]
+  details_not_in: [String!]
+  details_lt: String
+  details_lte: String
+  details_gt: String
+  details_gte: String
+  details_contains: String
+  details_not_contains: String
+  details_starts_with: String
+  details_not_starts_with: String
+  details_ends_with: String
+  details_not_ends_with: String
+  sprints_every: SprintWhereInput
+  sprints_some: SprintWhereInput
+  sprints_none: SprintWhereInput
+  AND: [TrackWhereInput!]
+  OR: [TrackWhereInput!]
+  NOT: [TrackWhereInput!]
+}
+
+input TrackWhereUniqueInput {
+  id: ID
+}
+
+type User {
+  id: ID!
+  name: String!
+  role: Role!
+  username: String!
+  email: String!
+  password: String!
+  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note!]
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  name: String!
+  role: Role
+  username: String!
+  email: String!
+  password: String!
+  notes: NoteCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutNotesInput {
+  create: UserCreateWithoutNotesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutNotesInput {
+  id: ID
+  name: String!
+  role: Role
+  username: String!
+  email: String!
+  password: String!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  role_ASC
+  role_DESC
+  username_ASC
+  username_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  role: Role!
+  username: String!
+  email: String!
+  password: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  name: String
+  role: Role
+  username: String
+  email: String
+  password: String
+  notes: NoteUpdateManyWithoutUserInput
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+  role: Role
+  username: String
+  email: String
+  password: String
+}
+
+input UserUpdateOneRequiredWithoutNotesInput {
+  create: UserCreateWithoutNotesInput
+  update: UserUpdateWithoutNotesDataInput
+  upsert: UserUpsertWithoutNotesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutNotesDataInput {
+  name: String
+  role: Role
+  username: String
+  email: String
+  password: String
+}
+
+input UserUpsertWithoutNotesInput {
+  update: UserUpdateWithoutNotesDataInput!
+  create: UserCreateWithoutNotesInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  role: Role
+  role_not: Role
+  role_in: [Role!]
+  role_not_in: [Role!]
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  notes_every: NoteWhereInput
+  notes_some: NoteWhereInput
+  notes_none: NoteWhereInput
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  username: String
+  email: String
+}

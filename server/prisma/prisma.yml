@@ -1,0 +1,13 @@
+# endpoint: https://us1.prisma.sh/seun-ab8503/tkdocs/dev
+endpoint: http://localhost:4466
+datamodel: datamodel.gql
+
+generate:
+  - generator: javascript-client
+    output: ../src/generated/prisma-client/
+  - generator: graphql-schema
+    output: ../src/generated/prisma.graphql
+
+hooks:
+  post-deploy: -graphql get-schema -p prisma
+    - prisma generate

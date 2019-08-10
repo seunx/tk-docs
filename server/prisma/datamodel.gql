@@ -1,0 +1,52 @@
+enum Role {
+	ADMIN
+	USER
+}
+type User {
+	id: ID! @id
+	name: String!
+	role: Role! @default(value: USER)
+	username: String! @unique
+	email: String! @unique
+	password: String!
+	notes: [Note]!
+}
+
+type Track {
+	id: ID! @id
+	name: String!
+	description: String!
+	details: String!
+	sprints: [Sprint]!
+}
+
+type Sprint {
+	id: ID! @id
+	name: String!
+	description: String!
+	track: Track!
+	modules: [Module]!
+}
+
+type Module {
+	id: ID! @id
+	name: String!
+	description: String!
+	sprint: Sprint!
+	lessons: [Lesson]!
+}
+
+type Lesson {
+	id: ID! @id
+	name: String!
+	description: String!
+	module: Module!
+	details: String!
+}
+
+type Note {
+	id: ID! @id
+	user: User!
+	lesson: Lesson!
+	details: String!
+}
