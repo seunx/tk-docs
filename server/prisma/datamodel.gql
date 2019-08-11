@@ -14,7 +14,7 @@ type User {
 
 type Track {
 	id: ID! @id
-	name: String!
+	name: String! @unique
 	description: String!
 	details: String!
 	sprints: [Sprint]!
@@ -22,15 +22,14 @@ type Track {
 
 type Sprint {
 	id: ID! @id
-	name: String!
-	description: String!
+	name: String! @unique
 	track: Track!
 	modules: [Module]!
 }
 
 type Module {
 	id: ID! @id
-	name: String!
+	name: String! @unique
 	description: String!
 	sprint: Sprint!
 	lessons: [Lesson]!
@@ -38,8 +37,9 @@ type Module {
 
 type Lesson {
 	id: ID! @id
-	name: String!
+	name: String! @unique
 	description: String!
+	objectives: [String] @scalarList(strategy: RELATION)
 	module: Module!
 	details: String!
 }
