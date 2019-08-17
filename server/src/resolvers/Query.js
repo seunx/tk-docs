@@ -16,6 +16,8 @@ module.exports = {
 			ctx.prisma.track({ id: parent.id }).sprints()
 	},
 	Sprint: {
+		track: (parent, args, ctx, info) =>
+			ctx.prisma.sprint({ id: parent.id }).track(),
 		modules: (parent, args, ctx, info) =>
 			ctx.prisma.sprint({ id: parent.id }).modules()
 	},
