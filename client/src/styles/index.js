@@ -11,8 +11,8 @@ export const main_menu = css`
 `;
 export const side_menu = css`
 	position: relative;
-	top: -50px;
-	left: 0;
+	/* top: -50px;
+	left: 0; */
 	width: 30%;
 `;
 

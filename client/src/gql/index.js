@@ -29,3 +29,32 @@ export const GET_TRACKS = gql`
 		}
 	}
 `;
+
+export const GET_MODULE = gql`
+	query module($where: ModuleWhereUniqueInput!) {
+		module(where: $where) {
+			id
+			name
+			description
+			lessons {
+				id
+				name
+				description
+				objectives
+				details
+			}
+		}
+	}
+`;
+
+export const GET_LESSON = gql`
+	query lesson($where: LessonWhereUniqueInput!) {
+		lesson(where: $where) {
+			id
+			name
+			description
+			objectives
+			details
+		}
+	}
+`;
