@@ -4,14 +4,13 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_LESSON } from '../gql';
 import Layout from '../components/layout';
 
-const SubTopic = props => {
+const Lesson = props => {
 	const lessonName = props.lessonId.split('-').join(' ');
 	const { loading, data, error } = useQuery(GET_LESSON, {
 		variables: { where: { name: lessonName } }
 	});
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error...</p>;
-	console.log(data);
 	return (
 		<Layout>
 			<h1>{data.lesson.name}</h1>
@@ -27,4 +26,4 @@ const SubTopic = props => {
 	);
 };
 
-export default SubTopic;
+export default Lesson;

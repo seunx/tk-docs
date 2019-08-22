@@ -2,14 +2,16 @@ import React from 'react';
 import { Router } from '@reach/router';
 
 import Home from './pages/Home';
-import Topic from './pages/Topic';
-import SubTopic from './pages/SubTopic';
+import Module from './pages/Module';
+import Lesson from './pages/Lesson';
+import Create from './pages/Create';
 
 const App = () => (
 	<Router>
-		<Home path="/"></Home>
-		<Topic path="/:id" />
-		<SubTopic path="/:moduleId/:lessonId" />
+		<Home path="/" />
+		<Module path="/:id" />
+		<Lesson path="/:moduleId/:lessonId" />
+		<Create path="/new" />
 	</Router>
 );
 

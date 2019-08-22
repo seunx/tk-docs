@@ -29,6 +29,22 @@ export const GET_TRACKS = gql`
 		}
 	}
 `;
+export const GET_SPRINTS = gql`
+	{
+		sprints {
+			id
+			name
+		}
+	}
+`;
+export const GET_MODULES = gql`
+	{
+		modules {
+			id
+			name
+		}
+	}
+`;
 
 export const GET_MODULE = gql`
 	query module($where: ModuleWhereUniqueInput!) {
@@ -55,6 +71,41 @@ export const GET_LESSON = gql`
 			description
 			objectives
 			details
+		}
+	}
+`;
+
+export const CREATE_TRACK = gql`
+	mutation createTrack($data: TrackCreateInput!) {
+		createTrack(data: $data) {
+			id
+			name
+		}
+	}
+`;
+export const CREATE_SPRINT = gql`
+	mutation createSprint($data: SprintCreateInput!) {
+		createSprint(data: $data) {
+			id
+			name
+		}
+	}
+`;
+
+export const CREATE_MODULE = gql`
+	mutation createModule($data: ModuleCreateInput!) {
+		createModule(data: $data) {
+			id
+			name
+		}
+	}
+`;
+
+export const CREATE_LESSON = gql`
+	mutation createLesson($data: LessonCreateInput!) {
+		createLesson(data: $data) {
+			id
+			name
 		}
 	}
 `;

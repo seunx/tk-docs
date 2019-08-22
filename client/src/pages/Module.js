@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Layout from '../components/layout';
 import { GET_MODULE } from '../gql';
 
-const Topic = props => {
+const Module = props => {
 	const moduleName = props.id.split('-').join(' ');
 	const { loading, error, data } = useQuery(GET_MODULE, {
 		variables: { where: { name: moduleName } }
@@ -37,4 +37,4 @@ const Topic = props => {
 	);
 };
 
-export default Topic;
+export default Module;
