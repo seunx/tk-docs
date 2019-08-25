@@ -26,6 +26,7 @@ export const GET_TRACKS = gql`
 		tracks {
 			id
 			name
+			description
 		}
 	}
 `;
