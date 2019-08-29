@@ -9,6 +9,7 @@ module.exports = {
 			ctx.prisma.updateLesson({
 				where: args.where,
 				data: args.data
-			})
+			}),
+		deleteTrack: (_, args, ctx, info) => ctx.prisma.deleteTrack(args.where)
 	}
 };

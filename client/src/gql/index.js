@@ -110,3 +110,12 @@ export const CREATE_LESSON = gql`
 		}
 	}
 `;
+
+export const DELETE_TRACK = gql`
+	mutation deleteTrack($where: TrackWhereUniqueInput!) {
+		deleteTrack(where: $where) {
+			id
+			name
+		}
+	}
+`;

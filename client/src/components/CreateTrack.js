@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { CREATE_TRACK } from '../gql';
+import { CREATE_TRACK, GET_TRACKS } from '../gql';
 
-export const CreateTrack = () => {
+export const CreateTrack = props => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: '',
 		details: ''
 	});
 	const [createTrack, { data }] = useMutation(CREATE_TRACK, {
-		variables: { data: info }
+		variables: { data: info },
+		refetchQueries: { query: GET_TRACKS }
 	});
 
 	const _handleChange = e => {
 		const { name, value } = e.target;
 		updateInfo({ ...info, [name]: value });
+	};
+	const _handleClick = async e => {
+		await createTrack();
+		props.setModal(false);
+		// setTimeout(() => {
+		// 	props.setModal(false);
+		// }, 5000);
 	};
 	return (
 		<div>
@@ -39,7 +47,7 @@ export const CreateTrack = () => {
 				placeholder="Track Details"
 				value={info.details}
 			/>
-			<button onClick={createTrack}>Create Track</button>
+			<button onClick={_handleClick}>Create Track</button>
 		</div>
 	);
 };
