@@ -1,15 +1,23 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import LessonItem from './LessonItem';
 
-const ModuleItem = ({ module }) => {
-	const urlName = module.name.split(' ').join('-');
+import LessonItem from './LessonItem';
+import { urlName } from '../../../utils/index';
+
+const ModuleItem = ({ track, module }) => {
 	return (
 		<div className="module-list">
-			<Link to={`/${urlName}`}>{module.name}</Link>
+			<Link to={`/course/${urlName(track)}/${urlName(module.name)}`}>
+				{module.name}
+			</Link>
 			<div className={`lesson-list`}>
 				{module.lessons.map(lesson => (
-					<LessonItem key={lesson.id} lesson={lesson} url={urlName} />
+					<LessonItem
+						key={lesson.id}
+						lesson={lesson}
+						track={urlName(track)}
+						module={urlName(module.name)}
+					/>
 				))}
 			</div>
 		</div>

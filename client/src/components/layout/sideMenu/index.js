@@ -14,7 +14,12 @@ const index = props => {
 	});
 
 	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error...</p>;
+	if (error)
+		return (
+			<div css={side_menu}>
+				<h1>Lambda School Training Kit</h1>
+			</div>
+		);
 	return (
 		<div css={side_menu}>
 			<input
@@ -24,7 +29,7 @@ const index = props => {
 				value={search}
 			/>
 			{data.track.sprints.map(sprint => (
-				<SprintItem key={sprint.id} sprint={sprint} />
+				<SprintItem key={sprint.id} sprint={sprint} track={props.track} />
 			))}
 		</div>
 	);

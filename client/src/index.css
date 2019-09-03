@@ -22,3 +22,15 @@
 #modal:empty {
 	display: none;
 }
+
+.home-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1rem;
+}
+
+.home-grid .home-track {
+	background-color: rgba(255, 0, 0, 0.363);
+	border-radius: 5px;
+	text-align: center;
+}

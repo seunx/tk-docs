@@ -1,18 +1,20 @@
-import { css } from '@emotion/core';
+import { css, Global } from '@emotion/core';
 
 export const main_menu = css`
 	display: flex;
-	flex-direction: row;
-	color: red;
-	justify-content: center;
-	h1 {
+	color: #fff;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #bb1333;
+	a {
 		padding: 0 1rem;
+		text-decoration: none;
+		font-size: 16px;
+		color: #fff;
 	}
 `;
 export const side_menu = css`
 	position: relative;
-	/* top: -50px;
-	left: 0; */
 	width: 30%;
 `;
 
@@ -29,8 +31,8 @@ export const track_items_container = css`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-gap: 1rem;
-	/* width: 80%; */
-	/* margin: 0 1rem; */
+	/* width: 80%;
+	margin: 0 1rem; */
 `;
 
 export const track_container = css`

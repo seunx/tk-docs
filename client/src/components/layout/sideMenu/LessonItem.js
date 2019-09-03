@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-const LessonItem = ({ lesson, url }) => {
-	const urlName = lesson.name.split(' ').join('-');
+import { urlName } from '../../../utils/index';
+
+const LessonItem = ({ lesson, track, module }) => {
 	return (
 		<p>
-			<Link to={`/${url}/${urlName}`}>{lesson.name}</Link>
+			<Link to={`/course/${track}/${module}/${urlName(lesson.name)}`}>
+				{lesson.name}
+			</Link>
 		</p>
 	);
 };
