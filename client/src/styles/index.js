@@ -29,15 +29,15 @@ export const main = css`
 
 export const track_items_container = css`
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(1, 1fr);
 	grid-gap: 1rem;
 	/* width: 80%;
 	margin: 0 1rem; */
 `;
 
 export const track_container = css`
-	width: 80%;
-	margin: 0 1rem;
+	width: 100%;
+	padding: 0 4rem;
 `;
 
 export const dashboard_menu = css`

@@ -5,6 +5,7 @@ export const GET_TRACK = gql`
 		track(where: $where) {
 			id
 			name
+			description
 			sprints {
 				id
 				name
@@ -16,6 +17,19 @@ export const GET_TRACK = gql`
 						name
 					}
 				}
+			}
+		}
+	}
+`;
+export const GET_SPRINT = gql`
+	query sprint($where: SprintWhereUniqueInput!) {
+		sprint(where: $where) {
+			id
+			name
+			modules {
+				id
+				name
+				description
 			}
 		}
 	}

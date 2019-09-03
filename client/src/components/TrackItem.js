@@ -1,8 +1,10 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { Link } from '@reach/router';
 
 import { DELETE_TRACK, GET_TRACKS } from '../gql';
 import { track_item } from '../styles';
+import { urlName } from '../utils/index';
 
 const TrackItem = ({ track }) => {
 	const [deleteTrack, { loading, error, data }] = useMutation(DELETE_TRACK, {
@@ -13,7 +15,9 @@ const TrackItem = ({ track }) => {
 	});
 	return (
 		<div css={track_item}>
-			<h1>{track.name}</h1>
+			<Link to={`/dashboard/${urlName(track.name)}`}>
+				<h1>{track.name}</h1>
+			</Link>
 			<p>{track.description}</p>
 			<div>
 				<p>Sprints: 12</p>
@@ -21,6 +25,7 @@ const TrackItem = ({ track }) => {
 				<p>Lessons: 48</p>
 			</div>
 			<button onClick={deleteTrack}>Delete Item</button>
+			<button>Edit Item</button>
 		</div>
 	);
 };
