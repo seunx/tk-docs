@@ -133,3 +133,27 @@ export const DELETE_TRACK = gql`
 		}
 	}
 `;
+export const DELETE_SPRINT = gql`
+	mutation deleteSprint($where: SprintWhereUniqueInput!) {
+		deleteSprint(where: $where) {
+			id
+			name
+		}
+	}
+`;
+export const DELETE_MODULE = gql`
+	mutation deleteModule($where: ModuleWhereUniqueInput!) {
+		deleteModule(where: $where) {
+			id
+			name
+		}
+	}
+`;
+export const DELETE_LESSON = gql`
+	mutation deleteLesson($where: LessonWhereUniqueInput!) {
+		deleteLesson(where: $where) {
+			id
+			name
+		}
+	}
+`;

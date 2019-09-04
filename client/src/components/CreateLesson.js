@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/react-hooks';
-import { CREATE_LESSON, GET_MODULES } from '../gql';
+import { useMutation } from '@apollo/react-hooks';
+import { CREATE_LESSON } from '../gql';
 
-export const CreateLesson = () => {
+export const CreateLesson = ({ setModal, module }) => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: '',
-		lessonModule: '',
+		lessonModule: module,
 		objectives: [],
 		details: '',
 		objective: ''
@@ -18,11 +18,10 @@ export const CreateLesson = () => {
 				description: info.description,
 				objectives: { set: info.objectives },
 				details: info.details,
-				module: { connect: { id: info.lessonModule } }
+				module: { connect: { name: info.lessonModule } }
 			}
 		}
 	});
-	const { loading, error, data: modules } = useQuery(GET_MODULES);
 	const _handleChange = e => {
 		const { name, value } = e.target;
 		updateInfo({ ...info, [name]: value });
@@ -32,10 +31,13 @@ export const CreateLesson = () => {
 		info.objectives.push(info.objective);
 		updateInfo({ ...info, objective: '' });
 	};
+	const _handleClick = async e => {
+		await createLesson();
+		setModal(false);
+	};
 
 	return (
 		<div>
-			<h1>I'm the Create Lesson</h1>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -50,16 +52,7 @@ export const CreateLesson = () => {
 				placeholder="Description"
 				value={info.description}
 			/>
-			<select onChange={_handleChange} name="lessonModule" disabled={loading}>
-				<option>Select Module...</option>
-				{loading
-					? null
-					: modules.modules.map(module => (
-							<option key={module.id} value={module.id}>
-								{module.name}
-							</option>
-					  ))}
-			</select>
+			<input type="text" name="lessonModule" value={module} disabled />
 			<div>
 				Enter Objectives
 				<input
@@ -78,7 +71,7 @@ export const CreateLesson = () => {
 				placeholder="Lesson Details"
 				value={info.details}
 			/>
-			<button onClick={createLesson}>Create Lesson</button>
+			<button onClick={_handleClick}>Create Lesson</button>
 		</div>
 	);
 };

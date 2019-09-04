@@ -2,15 +2,15 @@ import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
 
-import { DELETE_TRACK, GET_TRACKS } from '../gql';
+import { DELETE_TRACK } from '../gql';
 import { track_item } from '../styles';
 import { urlName } from '../utils/index';
 
 const TrackItem = ({ track }) => {
 	const [deleteTrack, { loading, error, data }] = useMutation(DELETE_TRACK, {
 		variables: {
-			where: { name: track.name },
-			refetchQueries: [{ query: GET_TRACKS }]
+			where: { name: track.name }
+			/*refetchQueries: [{ query: GET_TRACKS }]*/
 		}
 	});
 	return (

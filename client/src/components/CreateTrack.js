@@ -20,13 +20,9 @@ export const CreateTrack = props => {
 	const _handleClick = async e => {
 		await createTrack();
 		props.setModal(false);
-		// setTimeout(() => {
-		// 	props.setModal(false);
-		// }, 5000);
 	};
 	return (
 		<div>
-			<h1>I'm The Create Track</h1>
 			<input
 				onChange={_handleChange}
 				type="text"

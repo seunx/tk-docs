@@ -30,12 +30,10 @@ const SprintDash = ({ track }) => {
 				</div>
 				{showModal ? (
 					<Modal>
-						<h1 style={{ fontSize: '1rem' }}>I am the Modal</h1>
 						<div className="btn-container">
-							<button>External Link</button>
 							<button onClick={() => setModal(!showModal)}>Close Modal</button>
 						</div>
-						<CreateSprint setModal={setModal} />
+						<CreateSprint setModal={setModal} track={track} />
 					</Modal>
 				) : null}
 				<div css={track_items_container}>

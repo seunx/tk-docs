@@ -1,31 +1,35 @@
 import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/react-hooks';
-import { CREATE_MODULE, GET_SPRINTS } from '../gql';
+import { useMutation } from '@apollo/react-hooks';
 
-export const CreateModule = () => {
+import { pageName } from '../utils';
+import { CREATE_MODULE } from '../gql';
+
+export const CreateModule = ({ setModal, sprint }) => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: '',
-		moduleSprint: ''
+		moduleSprint: pageName(sprint)
 	});
 	const [createModule, { data }] = useMutation(CREATE_MODULE, {
 		variables: {
 			data: {
 				name: info.name,
 				description: info.description,
-				sprint: { connect: { id: info.moduleSprint } }
+				sprint: { connect: { name: info.moduleSprint } }
 			}
 		}
 	});
-	const { loading, error, data: sprints } = useQuery(GET_SPRINTS);
 	const _handleChange = e => {
 		const { name, value } = e.target;
 		updateInfo({ ...info, [name]: value });
 	};
 
+	const _handleClick = async e => {
+		await createModule();
+		setModal(false);
+	};
 	return (
 		<div>
-			<h1>I'm the Create Module</h1>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -40,17 +44,8 @@ export const CreateModule = () => {
 				placeholder="Description"
 				value={info.description}
 			/>
-			<select onChange={_handleChange} name="moduleSprint" disabled={loading}>
-				<option>Select Sprint...</option>
-				{loading
-					? null
-					: sprints.sprints.map(sprint => (
-							<option key={sprint.id} value={sprint.id}>
-								{sprint.name}
-							</option>
-					  ))}
-			</select>
-			<button onClick={createModule}>Create Module</button>
+			<input type="text" name="moduleSprint" value={sprint} disabled />
+			<button onClick={_handleClick}>Create Module</button>
 		</div>
 	);
 };
