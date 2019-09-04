@@ -125,6 +125,7 @@ export const CREATE_LESSON = gql`
 	}
 `;
 
+// ****GraphQL Delete Mutations ****
 export const DELETE_TRACK = gql`
 	mutation deleteTrack($where: TrackWhereUniqueInput!) {
 		deleteTrack(where: $where) {
@@ -157,3 +158,18 @@ export const DELETE_LESSON = gql`
 		}
 	}
 `;
+//**** Delete Mutations End****
+
+// **** Update Mutation Start ****
+export const UPDATE_TRACK = gql`
+	mutation updateTrack(
+		$where: TrackWhereUniqueInput!
+		$data: TrackUpdateInput!
+	) {
+		updateTrack(where: $where, data: $data) {
+			id
+			name
+		}
+	}
+`;
+// **** Update Mutation End ****

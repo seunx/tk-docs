@@ -8,6 +8,8 @@ module.exports = {
 		deleteSprint: (_, args, ctx, info) => ctx.prisma.deleteSprint(args.where),
 		deleteModule: (_, args, ctx, info) => ctx.prisma.deleteModule(args.where),
 		deleteLesson: (_, args, ctx, info) => ctx.prisma.deleteLesson(args.where),
+		updateTrack: (_, args, ctx, info) =>
+			ctx.prisma.updateTrack({ where: args.where, data: args.data }),
 		updateLesson: (_, args, ctx, info) =>
 			ctx.prisma.updateLesson({
 				where: args.where,
