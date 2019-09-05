@@ -172,4 +172,37 @@ export const UPDATE_TRACK = gql`
 		}
 	}
 `;
+export const UPDATE_SPRINT = gql`
+	mutation updateSprint(
+		$where: SprintWhereUniqueInput!
+		$data: SprintUpdateInput!
+	) {
+		updateSprint(where: $where, data: $data) {
+			id
+			name
+		}
+	}
+`;
+export const UPDATE_MODULE = gql`
+	mutation updateModule(
+		$where: ModuleWhereUniqueInput!
+		$data: ModuleUpdateInput!
+	) {
+		updateModule(where: $where, data: $data) {
+			id
+			name
+		}
+	}
+`;
+export const UPDATE_LESSON = gql`
+	mutation updateLesson(
+		$where: LessonWhereUniqueInput!
+		$data: LessonUpdateInput!
+	) {
+		updateLesson(where: $where, data: $data) {
+			id
+			name
+		}
+	}
+`;
 // **** Update Mutation End ****

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
 
+import UpdateModule from '../components/UpdateModule';
+import Modal from '../components/Modal';
 import { DELETE_MODULE } from '../gql';
 import { track_item } from '../styles';
-import { urlName } from '../utils/index';
+import { urlName, pageName } from '../utils/index';
 
 const ModuleItem = ({ track, sprint, module }) => {
+	const [showModal, setModal] = useState(false);
 	const [deleteModule, { loading, error, data }] = useMutation(DELETE_MODULE, {
 		variables: {
 			where: { name: module.name }
@@ -23,7 +26,21 @@ const ModuleItem = ({ track, sprint, module }) => {
 				<p>Lessons: 48</p>
 			</div>
 			<button onClick={deleteModule}>Delete Item</button>
-			<button>Edit Item</button>
+			{showModal ? (
+				<Modal>
+					<h1 style={{ fontSize: '1rem' }}>Update Module</h1>
+					<div className="btn-container">
+						<button onClick={() => setModal(!showModal)}>Close Modal</button>
+					</div>
+					<UpdateModule
+						setModal={setModal}
+						sprint={pageName(sprint)}
+						module={module.name}
+						description={module.description}
+					/>
+				</Modal>
+			) : null}
+			<button onClick={() => setModal(!showModal)}>Edit Item</button>
 		</div>
 	);
 };

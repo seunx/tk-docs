@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"server": "rm -rf ./node_modules/.cache/ && nodemon -e js,gql,graphql -x node --inspect --exec babel-node src/index.js",
-		"deploy": "prisma deploy -e ./.env"
+		"deploy": "prisma deploy"
 	},
 	"keywords": [],
 	"author": "",
