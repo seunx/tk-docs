@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import { pageName } from '../utils';
-import { UPDATE_MODULE } from '../gql';
+import { CREATE_MODULE } from '../../gql';
+import { pageName } from '../../utils';
 
-export const UpdateModule = ({ setModal, sprint, module, description }) => {
+export const CreateModule = ({ setModal, sprint }) => {
 	const [info, updateInfo] = useState({
-		name: module,
-		description: description
+		name: '',
+		description: '',
+		moduleSprint: pageName(sprint)
 	});
-	const [updateModule, { data }] = useMutation(UPDATE_MODULE, {
-		variables: { where: { name: module }, data: { ...info } }
-		/*refetchQueries: { query: GET_TRACKS }*/
+	const [createModule, { data }] = useMutation(CREATE_MODULE, {
+		variables: {
+			data: {
+				name: info.name,
+				description: info.description,
+				sprint: { connect: { name: info.moduleSprint } }
+			}
+		}
 	});
 	const _handleChange = e => {
 		const { name, value } = e.target;
@@ -19,7 +25,7 @@ export const UpdateModule = ({ setModal, sprint, module, description }) => {
 	};
 
 	const _handleClick = async e => {
-		await updateModule();
+		await createModule();
 		setModal(false);
 	};
 	return (
@@ -38,10 +44,15 @@ export const UpdateModule = ({ setModal, sprint, module, description }) => {
 				placeholder="Description"
 				value={info.description}
 			/>
-			<input type="text" name="moduleSprint" value={sprint} disabled />
-			<button onClick={_handleClick}>Update Module</button>
+			<input
+				type="text"
+				name="moduleSprint"
+				value={pageName(sprint)}
+				disabled
+			/>
+			<button onClick={_handleClick}>Create Module</button>
 		</div>
 	);
 };
 
-export default UpdateModule;
+export default CreateModule;

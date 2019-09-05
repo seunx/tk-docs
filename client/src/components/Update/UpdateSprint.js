@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { UPDATE_SPRINT } from '../gql';
+
+import { UPDATE_SPRINT } from '../../gql';
 
 export const UpdateSprint = ({ setModal, track, sprint }) => {
 	const [info, updateInfo] = useState({

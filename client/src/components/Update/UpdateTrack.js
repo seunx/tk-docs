@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { CREATE_TRACK } from '../gql';
 
-export const CreateTrack = props => {
+import { UPDATE_TRACK } from '../../gql';
+
+export const UpdateTrack = ({ setModal, track, description, details }) => {
 	const [info, updateInfo] = useState({
-		name: '',
-		description: '',
-		details: ''
+		name: track,
+		description: description,
+		details: details
 	});
-	const [createTrack, { data }] = useMutation(CREATE_TRACK, {
-		variables: { data: info }
-		/* refetchQueries: { query: GET_TRACKS } */
+	const [updateTrack, { data }] = useMutation(UPDATE_TRACK, {
+		variables: { where: { name: track }, data: { ...info } }
+		/*refetchQueries: { query: GET_TRACKS }*/
 	});
 
 	const _handleChange = e => {
@@ -18,8 +19,8 @@ export const CreateTrack = props => {
 		updateInfo({ ...info, [name]: value });
 	};
 	const _handleClick = async e => {
-		await createTrack();
-		props.setModal(false);
+		await updateTrack();
+		setModal(false);
 	};
 	return (
 		<div>
@@ -43,9 +44,9 @@ export const CreateTrack = props => {
 				placeholder="Track Details"
 				value={info.details}
 			/>
-			<button onClick={_handleClick}>Create Track</button>
+			<button onClick={_handleClick}>Update Track</button>
 		</div>
 	);
 };
 
-export default CreateTrack;
+export default UpdateTrack;

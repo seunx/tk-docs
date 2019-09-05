@@ -16,6 +16,9 @@ export const main_menu = css`
 export const side_menu = css`
 	position: relative;
 	width: 30%;
+	background-color: #14121f;
+	color: #fff;
+	height: 100vh;
 `;
 
 export const main = css`
@@ -23,45 +26,21 @@ export const main = css`
 		display: flex;
 	}
 	.content-body {
-		width: 70%;
+		width: 100%;
 	}
 `;
 
-export const track_items_container = css`
-	display: grid;
-	grid-template-columns: repeat(1, 1fr);
-	grid-gap: 1rem;
-	/* width: 80%;
-	margin: 0 1rem; */
-`;
-
-export const track_container = css`
+export const dash_container = css`
 	width: 100%;
 	padding: 0 4rem;
 `;
-
-export const dashboard_menu = css`
-	background: yellow;
-	width: 20%;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	/* align-items: center; */
-	.profile-pic {
-		align-self: center;
-		border-radius: 50%;
-		background: red;
-		height: 150px;
-		width: 150px;
-	}
-`;
-
-export const dashboard_container = css`
-	display: flex;
-`;
-
-export const track_item = css`
+export const dash_items = css`
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	grid-gap: 1rem;
 	p {
 		text-align: justify;
 	}
+	width: 100%;
+	margin: 0 1rem;
 `;

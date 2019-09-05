@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
 
-import UpdateTrack from '../components/UpdateTrack';
+import UpdateTrack from '../components/update/UpdateTrack';
 import Modal from '../components/Modal';
 import { DELETE_TRACK } from '../gql';
-import { track_item } from '../styles';
 import { urlName } from '../utils/index';
 
 const TrackItem = ({ track }) => {
@@ -17,16 +16,11 @@ const TrackItem = ({ track }) => {
 		}
 	});
 	return (
-		<div css={track_item}>
+		<div>
 			<Link to={`/dashboard/${urlName(track.name)}`}>
 				<h1>{track.name}</h1>
 			</Link>
 			<p>{track.description}</p>
-			<div>
-				<p>Sprints: 12</p>
-				<p>Modules: 24</p>
-				<p>Lessons: 48</p>
-			</div>
 			<button onClick={deleteTrack}>Delete Item</button>
 			{showModal ? (
 				<Modal>

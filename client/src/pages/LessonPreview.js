@@ -5,6 +5,21 @@ import { Link } from '@reach/router';
 import Layout from '../components/layout';
 import { GET_LESSON } from '../gql/index';
 import { pageName } from '../utils';
+let hljs = require('highlight.js');
+let md = require('markdown-it')({
+	html: true,
+	linkify: true,
+	typographer: true,
+	highlight: function(str, lang) {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(lang, str).value;
+			} catch (__) {}
+		}
+
+		return ''; // use external default escaping
+	}
+});
 
 const LessonPreview = ({ track, sprint, module, lesson }) => {
 	const { loading, error, data } = useQuery(GET_LESSON, {
@@ -30,7 +45,9 @@ const LessonPreview = ({ track, sprint, module, lesson }) => {
 					))}
 				</ul>
 				<p>Pro Tip Goes Here</p>
-				<div>{data.lesson.details}</div>
+				<div
+					dangerouslySetInnerHTML={{ __html: md.render(data.lesson.details) }}
+				/>
 			</div>
 		</Layout>
 	);

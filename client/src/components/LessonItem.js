@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
 
-import UpdateLesson from '../components/UpdateLesson';
+import UpdateLesson from './Update/UpdateLesson';
 import Modal from '../components/Modal';
 import { DELETE_LESSON } from '../gql';
-import { track_item } from '../styles';
 import { urlName, pageName } from '../utils/index';
 
 const LessonItem = ({ track, sprint, module, lesson }) => {
@@ -17,7 +16,7 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 		}
 	});
 	return (
-		<div css={track_item}>
+		<div>
 			<Link
 				to={`/dashboard/${track}/${sprint}/${module}/${urlName(lesson.name)}`}
 			>

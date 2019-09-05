@@ -1,32 +1,26 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import { pageName } from '../utils';
-import { CREATE_MODULE } from '../gql';
+import { CREATE_TRACK } from '../../gql';
 
-export const CreateModule = ({ setModal, sprint }) => {
+export const CreateTrack = props => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: '',
-		moduleSprint: pageName(sprint)
+		details: ''
 	});
-	const [createModule, { data }] = useMutation(CREATE_MODULE, {
-		variables: {
-			data: {
-				name: info.name,
-				description: info.description,
-				sprint: { connect: { name: info.moduleSprint } }
-			}
-		}
+	const [createTrack, { data }] = useMutation(CREATE_TRACK, {
+		variables: { data: info }
+		/* refetchQueries: { query: GET_TRACKS } */
 	});
+
 	const _handleChange = e => {
 		const { name, value } = e.target;
 		updateInfo({ ...info, [name]: value });
 	};
-
 	const _handleClick = async e => {
-		await createModule();
-		setModal(false);
+		await createTrack();
+		props.setModal(false);
 	};
 	return (
 		<div>
@@ -34,7 +28,7 @@ export const CreateModule = ({ setModal, sprint }) => {
 				onChange={_handleChange}
 				type="text"
 				name="name"
-				placeholder="Module Name"
+				placeholder="Track Name"
 				value={info.name}
 			/>
 			<input
@@ -44,10 +38,15 @@ export const CreateModule = ({ setModal, sprint }) => {
 				placeholder="Description"
 				value={info.description}
 			/>
-			<input type="text" name="moduleSprint" value={sprint} disabled />
-			<button onClick={_handleClick}>Create Module</button>
+			<textarea
+				onChange={_handleChange}
+				name="details"
+				placeholder="Track Details"
+				value={info.details}
+			/>
+			<button onClick={_handleClick}>Create Track</button>
 		</div>
 	);
 };
 
-export default CreateModule;
+export default CreateTrack;

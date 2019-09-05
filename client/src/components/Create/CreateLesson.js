@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { CREATE_LESSON } from '../gql';
+
+import { CREATE_LESSON } from '../../gql';
 
 export const CreateLesson = ({ setModal, module }) => {
 	const [info, updateInfo] = useState({

@@ -5,8 +5,8 @@ import Layout from '../components/layout';
 import TrackItem from '../components/TrackItem';
 import Modal from '../components/Modal';
 import { GET_TRACKS } from '../gql';
-import { track_items_container, track_container } from '../styles';
-import CreateTrack from '../components/CreateTrack';
+import { dash_container, dash_items } from '../styles';
+import CreateTrack from '../components/create/CreateTrack';
 
 const Dashboard = () => {
 	const [showModal, setModal] = useState(false);
@@ -15,7 +15,7 @@ const Dashboard = () => {
 	if (error) return <p>Error...</p>;
 	return (
 		<Layout>
-			<div css={track_container}>
+			<div css={dash_container}>
 				<h1>Track Dashboard</h1>
 				<div style={{ display: 'flex' }}>
 					<p>
@@ -35,7 +35,7 @@ const Dashboard = () => {
 						<CreateTrack setModal={setModal} />
 					</Modal>
 				) : null}
-				<div css={track_items_container}>
+				<div css={dash_items}>
 					{data.tracks.map(track => (
 						<TrackItem key={track.id} track={track} />
 					))}

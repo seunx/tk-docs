@@ -5,6 +5,21 @@ import Layout from '../components/layout';
 import SideMenu from '../components/layout/sideMenu';
 import { GET_LESSON } from '../gql';
 import { pageName } from '../utils';
+let hljs = require('highlight.js');
+let md = require('markdown-it')({
+	html: true,
+	linkify: true,
+	typographer: true,
+	highlight: function(str, lang) {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(lang, str).value;
+			} catch (__) {}
+		}
+
+		return ''; // use external default escaping
+	}
+});
 
 const Lesson = ({ track, lesson }) => {
 	const { loading, data, error } = useQuery(GET_LESSON, {
@@ -25,7 +40,9 @@ const Lesson = ({ track, lesson }) => {
 						<li key={i}>{obj}</li>
 					))}
 				</ul>
-				<div>{data.lesson.details}</div>
+				<div
+					dangerouslySetInnerHTML={{ __html: md.render(data.lesson.details) }}
+				/>
 			</div>
 		</Layout>
 	);

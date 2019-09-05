@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { CREATE_SPRINT } from '../gql';
-import { pageName } from '../utils';
 
-export const CreateSprint = ({ track, setModal }) => {
+import { CREATE_SPRINT } from '../../gql';
+import { pageName } from '../../utils';
+
+export const CreateSprint = ({ setModal, track }) => {
 	const [info, updateInfo] = useState({
 		name: '',
 		sprintTrack: pageName(track)
@@ -33,7 +34,7 @@ export const CreateSprint = ({ track, setModal }) => {
 				placeholder="Sprint Name"
 				value={info.name}
 			/>
-			<input type="text" name="track" value={track} disabled />
+			<input type="text" name="track" value={pageName(track)} disabled />
 			<button onClick={_handleClick}>Create Sprint</button>
 		</div>
 	);

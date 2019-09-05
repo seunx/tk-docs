@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { UPDATE_LESSON } from '../gql';
+
+import { UPDATE_LESSON } from '../../gql';
 
 export const UpdateLesson = ({ setModal, module, lesson }) => {
 	const [info, updateInfo] = useState({
@@ -29,6 +30,10 @@ export const UpdateLesson = ({ setModal, module, lesson }) => {
 		e.preventDefault();
 		info.objectives.push(info.objective);
 		updateInfo({ ...info, objective: '' });
+	};
+	const _handleObjective = i => {
+		info.objectives.splice(i, 1);
+		console.log(o);
 	};
 	const _handleClick = async e => {
 		await updateLesson();
@@ -62,7 +67,13 @@ export const UpdateLesson = ({ setModal, module, lesson }) => {
 					value={info.objective}
 				/>
 				<button onClick={_addObjective}>Add</button>
-				{info.objectives.map(o => o)}
+				<ul>
+					{info.objectives.map((o, i) => (
+						<li key={o[0] + i} onClick={() => _handleObjective(i)}>
+							{o}
+						</li>
+					))}
+				</ul>
 			</div>
 			<textarea
 				onChange={_handleChange}

@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { UPDATE_TRACK } from '../gql';
 
-export const UpdateTrack = ({ setModal, track, description, details }) => {
+import { UPDATE_MODULE } from '../../gql';
+
+export const UpdateModule = ({ setModal, sprint, module, description }) => {
 	const [info, updateInfo] = useState({
-		name: track,
-		description: description,
-		details: details
+		name: module,
+		description: description
 	});
-	const [updateTrack, { data }] = useMutation(UPDATE_TRACK, {
-		variables: { where: { name: track }, data: { ...info } }
+	const [updateModule, { data }] = useMutation(UPDATE_MODULE, {
+		variables: { where: { name: module }, data: { ...info } }
 		/*refetchQueries: { query: GET_TRACKS }*/
 	});
-
 	const _handleChange = e => {
 		const { name, value } = e.target;
 		updateInfo({ ...info, [name]: value });
 	};
+
 	const _handleClick = async e => {
-		await updateTrack();
+		await updateModule();
 		setModal(false);
 	};
 	return (
@@ -27,7 +27,7 @@ export const UpdateTrack = ({ setModal, track, description, details }) => {
 				onChange={_handleChange}
 				type="text"
 				name="name"
-				placeholder="Track Name"
+				placeholder="Module Name"
 				value={info.name}
 			/>
 			<input
@@ -37,15 +37,10 @@ export const UpdateTrack = ({ setModal, track, description, details }) => {
 				placeholder="Description"
 				value={info.description}
 			/>
-			<textarea
-				onChange={_handleChange}
-				name="details"
-				placeholder="Track Details"
-				value={info.details}
-			/>
-			<button onClick={_handleClick}>Update Track</button>
+			<input type="text" name="moduleSprint" value={sprint} disabled />
+			<button onClick={_handleClick}>Update Module</button>
 		</div>
 	);
 };
 
-export default UpdateTrack;
+export default UpdateModule;
