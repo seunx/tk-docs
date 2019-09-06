@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import SideMenu from '../components/layout/sideMenu';
 import { GET_LESSON } from '../gql';
 import { pageName } from '../utils';
+import { page_header, pro_tip } from '../styles';
 let hljs = require('highlight.js');
 let md = require('markdown-it')({
 	html: true,
@@ -32,14 +33,19 @@ const Lesson = ({ track, lesson }) => {
 		<Layout>
 			<SideMenu track={pageName(track)} />
 			<div className="content-body">
-				<h1>{data.lesson.name}</h1>
-				<p>{data.lesson.description}</p>
-				<p>Objectives:</p>
-				<ul>
-					{data.lesson.objectives.map((obj, i) => (
-						<li key={i}>{obj}</li>
-					))}
-				</ul>
+				<div css={page_header}>
+					<h1>{data.lesson.name}</h1>
+					<p>{data.lesson.description}</p>
+					<p>Objectives:</p>
+					<ul>
+						{data.lesson.objectives.map((obj, i) => (
+							<li key={i}>{obj}</li>
+						))}
+					</ul>
+				</div>
+				<div css={pro_tip}>
+					<h1>Pro Tip Goes Here</h1>
+				</div>
 				<div
 					dangerouslySetInnerHTML={{ __html: md.render(data.lesson.details) }}
 				/>

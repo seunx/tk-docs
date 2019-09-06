@@ -12,6 +12,7 @@ export const GET_TRACK = gql`
 				modules {
 					id
 					name
+					description
 					lessons {
 						id
 						name

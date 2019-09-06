@@ -7,6 +7,7 @@ const LessonItem = ({ lesson, track, module }) => {
 	return (
 		<p>
 			<Link to={`/course/${track}/${module}/${urlName(lesson.name)}`}>
+				•{'    '} {'   '}
 				{lesson.name}
 			</Link>
 		</p>

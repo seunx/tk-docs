@@ -103,6 +103,7 @@ section {
 }
 body {
 	line-height: 1;
+	background-color: #f0f4f7;
 }
 ol,
 ul {
@@ -129,7 +130,6 @@ table {
 	box-sizing: border-box;
 	line-height: 1.5;
 }
-
 h1 {
 	font-size: 4rem;
 }
@@ -139,8 +139,15 @@ h2 {
 h3 {
 	font-size: 2.4rem;
 }
-p {
+h4 {
 	font-size: 1.6rem;
+	font-weight: 500;
+}
+p {
+	font-size: 1.2rem;
+}
+a {
+	text-decoration: none;
 }
 
 #modal {
@@ -168,14 +175,6 @@ p {
 	display: none;
 }
 
-.home-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 1rem;
-}
-
-.home-grid .home-track {
-	background-color: rgba(255, 0, 0, 0.363);
-	border-radius: 5px;
-	text-align: center;
+.active {
+	display: none;
 }

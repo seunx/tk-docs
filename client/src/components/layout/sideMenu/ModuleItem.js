@@ -4,11 +4,11 @@ import { Link } from '@reach/router';
 import LessonItem from './LessonItem';
 import { urlName } from '../../../utils/index';
 
-const ModuleItem = ({ track, module }) => {
+const ModuleItem = ({ track, module, active }) => {
 	return (
-		<div className="module-list">
+		<div className={`module-list ${active ? 'active' : ''}`}>
 			<Link to={`/course/${urlName(track)}/${urlName(module.name)}`}>
-				{module.name}
+				<h4>{module.name}</h4>
 			</Link>
 			<div className={`lesson-list`}>
 				{module.lessons.map(lesson => (

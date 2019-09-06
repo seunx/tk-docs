@@ -17,7 +17,7 @@ const Dashboard = () => {
 		<Layout>
 			<div css={dash_container}>
 				<h1>Track Dashboard</h1>
-				<div style={{ display: 'flex' }}>
+				<div>
 					<p>
 						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi
 						commodi laboriosam rerum inventore eum veniam, ducimus excepturi

@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ModuleItem from './ModuleItem';
 
 const SprintItem = ({ sprint, track }) => {
+	const [active, setActive] = useState(false);
 	const _handleClick = e => {
-		console.log(`from Sprint Item, ${sprint.name}`);
+		setActive(!active);
 	};
 	return (
-		<React.Fragment>
-			<h1 onClick={_handleClick}>{sprint.name}</h1>
+		<>
+			<h3 onClick={_handleClick} style={{ cursor: 'pointer' }}>
+				{sprint.name}
+			</h3>
 			{sprint.modules.map(module => (
-				<ModuleItem key={module.id} module={module} track={track} />
+				<ModuleItem
+					key={module.id}
+					module={module}
+					track={track}
+					active={active}
+				/>
 			))}
-		</React.Fragment>
+		</>
 	);
 };
 

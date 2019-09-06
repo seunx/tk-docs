@@ -8,11 +8,17 @@ const index = () => {
 		<>
 			<div css={main_menu}>
 				<h1>
-					<Link to="/">Lambda School Logo</Link>
+					<Link to="/">
+						<img
+							src={require('../../../images/lambda_W.png')}
+							alt="lambda logo"
+							width="200px"
+						/>
+					</Link>
 				</h1>
 				<nav>
 					<Link to="/">Home</Link>
-					<Link to="/dashboard">User</Link>
+					<Link to="/dashboard">Admin</Link>
 				</nav>
 			</div>
 		</>

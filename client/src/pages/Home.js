@@ -24,21 +24,21 @@ const Home = () => {
 					to the materials in this training kit, even after you graduate. Pick
 					your track to get started!
 				</p>
-				<div className="home-grid">
+				<div className="home-grid forms">
 					{forms.map((form, i) => (
 						<div key={i}>
-							<h3>{form.name}</h3>
+							<h4>{form.name}</h4>
 							{form.links.map((link, i) => (
 								<p key={i}>{link}</p>
 							))}
 						</div>
 					))}
 				</div>
-				<div className="home-grid">
-					{data.tracks.map(track => (
+				<div className="home-grid courses">
+					{data.tracks.map((track, i) => (
 						<Link key={track.id} to={`/course/${urlName(track.name)}`}>
-							<div className="home-track">
-								<h3>{track.name}</h3>
+							<div className={`home-track track-${i}`}>
+								<h4>{track.name}</h4>
 							</div>
 						</Link>
 					))}
