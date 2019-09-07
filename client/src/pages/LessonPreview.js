@@ -6,21 +6,7 @@ import Layout from '../components/layout';
 import { GET_LESSON } from '../gql/index';
 import { pageName } from '../utils';
 import { page_header, pro_tip } from '../styles';
-let hljs = require('highlight.js');
-let md = require('markdown-it')({
-	html: true,
-	linkify: true,
-	typographer: true,
-	highlight: function(str, lang) {
-		if (lang && hljs.getLanguage(lang)) {
-			try {
-				return hljs.highlight(lang, str).value;
-			} catch (__) {}
-		}
-
-		return ''; // use external default escaping
-	}
-});
+import MarkDown from '../components/MarkDown';
 
 const LessonPreview = ({ track, sprint, module, lesson }) => {
 	const { loading, error, data } = useQuery(GET_LESSON, {
@@ -39,16 +25,19 @@ const LessonPreview = ({ track, sprint, module, lesson }) => {
 						<Link to={`/dashboard/${track}/${sprint}/${module}`}>{lesson}</Link>
 					</div>
 					<h1>{data.lesson.name}</h1>
-					<p>{data.lesson.description}</p>
-					<p>Objectives:</p>
-					{data.lesson.objective}
+					<MarkDown content={data.lesson.description} />
+					<br />
+					<span className="tag">
+						At the end of this module, you should be able to:
+					</span>
+					<div className="objectives">
+						<MarkDown content={data.lesson.objective} />
+					</div>
 				</div>
 				<div css={pro_tip}>
 					<p>Pro Tip Goes Here</p>
 				</div>
-				<div
-					dangerouslySetInnerHTML={{ __html: md.render(data.lesson.details) }}
-				/>
+				<MarkDown content={data.lesson.details} />
 			</div>
 		</Layout>
 	);

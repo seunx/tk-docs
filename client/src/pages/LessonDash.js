@@ -6,10 +6,11 @@ import Layout from '../components/layout';
 import Modal from '../components/Modal';
 import LessonItem from '../components/LessonItem';
 import CreateLesson from '../components/Create/CreateLesson';
+import ModalContent from '../components/ModalContent';
 import { pageName } from '../utils';
 import { GET_MODULE } from '../gql/index';
 import { dash_container, dash_items } from '../styles/index';
-import ModalContent from '../components/ModalContent';
+import MarkDown from './../components/MarkDown';
 
 const LessonDash = ({ sprint, track, module }) => {
 	const [showModal, setModal] = useState(false);
@@ -29,7 +30,7 @@ const LessonDash = ({ sprint, track, module }) => {
 					</div>
 					<h2>{pageName(module)}</h2>
 
-					<p>{data.module.description}</p>
+					<MarkDown content={data.module.description} />
 					<button className="btn primary" onClick={() => setModal(!showModal)}>
 						Create Lesson
 					</button>

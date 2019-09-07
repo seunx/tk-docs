@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
-let md = require('markdown-it')({
-	html: true,
-	linkify: true,
-	typographer: true,
-	highlight: function(str, lang) {
-		if (lang && hljs.getLanguage(lang)) {
-			try {
-				return hljs.highlight(lang, str).value;
-			} catch (__) {}
-		}
-
-		return ''; // use external default escaping
-	}
-});
 
 import Layout from '../components/layout';
 import Modal from '../components/Modal';
@@ -24,6 +10,7 @@ import SprintItem from '../components/SprintItem';
 import { GET_TRACK } from '../gql/index';
 import { dash_container, dash_items } from '../styles/index';
 import { pageName } from '../utils';
+import MarkDown from '../components/MarkDown';
 
 const SprintDash = ({ track }) => {
 	const [showModal, setModal] = useState(false);
@@ -40,11 +27,9 @@ const SprintDash = ({ track }) => {
 						<Link to="/dashboard">{track}</Link>
 					</div>
 					<h2>{pageName(track)}</h2>
-					<div
-						dangerouslySetInnerHTML={{
-							__html: md.render(data.track.description)
-						}}
-					/>
+
+					<MarkDown content={data.track.description} />
+
 					<button className="btn primary" onClick={() => setModal(!showModal)}>
 						Create Sprint
 					</button>

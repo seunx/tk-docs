@@ -120,12 +120,22 @@ export const dash_item = css`
 	p {
 		padding: 10px 0;
 	}
+	.objectives {
+		padding: 0 0 0 2.5rem;
+	}
 `;
 export const page_header = css`
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
 	padding: 1rem;
+	.tag {
+		font-weight: bold;
+		font-size: 1.3rem;
+	}
+	.objectives {
+		padding: 0 0 0 2.5rem;
+	}
 `;
 export const pro_tip = css`
 	background-color: #fff3cd;
@@ -187,4 +197,13 @@ export const modal_content = css`
 		display: flex;
 		padding: 15px 0;
 	}
+`;
+
+export const markdown = css`
+	font-size: 1.5rem;
+	li {
+		list-style-type: disc;
+	}
+	padding: 0 0 0 2.5rem;
+	background-color: #fff;
 `;

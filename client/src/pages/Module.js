@@ -7,6 +7,7 @@ import SideMenu from '../components/layout/sideMenu';
 import { GET_MODULE } from '../gql';
 import { pageName, urlName } from '../utils';
 import { page_header, home_sprint } from '../styles';
+import MarkDown from '../components/MarkDown';
 
 const Module = ({ track, module }) => {
 	const { loading, error, data } = useQuery(GET_MODULE, {
@@ -20,7 +21,7 @@ const Module = ({ track, module }) => {
 			<div className="content-body">
 				<div css={page_header}>
 					<h2>{pageName(module)}</h2>
-					<p>{data.module.description}</p>
+					<MarkDown content={data.module.description} />
 				</div>
 				{data.module.lessons.map(lesson => {
 					return (
@@ -28,9 +29,10 @@ const Module = ({ track, module }) => {
 							<Link to={`/course/${track}/${module}/${urlName(lesson.name)}`}>
 								<h4>{lesson.name}</h4>
 							</Link>
-							<p>{lesson.description}</p>
+							<MarkDown content={lesson.description} />
+							<br />
 							<p>Objectives:</p>
-							{lesson.objective}
+							<MarkDown content={lesson.objective} />
 						</div>
 					);
 				})}

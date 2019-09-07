@@ -8,6 +8,7 @@ import { DELETE_LESSON } from '../gql';
 import { urlName, pageName } from '../utils/index';
 import { dash_item } from '../styles';
 import ModalContent from './ModalContent';
+import MarkDown from './MarkDown';
 
 const LessonItem = ({ track, sprint, module, lesson }) => {
 	const [showModal, setModal] = useState(false);
@@ -26,7 +27,9 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 			</Link>
 			<p>{lesson.description}</p>
 			<p>Objectives:</p>
-			{lesson.objective}
+			<div className="objectives">
+				<MarkDown content={lesson.objective} />
+			</div>
 			{showModal ? (
 				<Modal>
 					<ModalContent

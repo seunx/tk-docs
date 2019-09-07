@@ -6,21 +6,7 @@ import SideMenu from '../components/layout/sideMenu';
 import { GET_LESSON } from '../gql';
 import { pageName } from '../utils';
 import { page_header, pro_tip } from '../styles';
-let hljs = require('highlight.js');
-let md = require('markdown-it')({
-	html: true,
-	linkify: true,
-	typographer: true,
-	highlight: function(str, lang) {
-		if (lang && hljs.getLanguage(lang)) {
-			try {
-				return hljs.highlight(lang, str).value;
-			} catch (__) {}
-		}
-
-		return ''; // use external default escaping
-	}
-});
+import MarkDown from '../components/MarkDown';
 
 const Lesson = ({ track, lesson }) => {
 	const { loading, data, error } = useQuery(GET_LESSON, {
@@ -35,16 +21,19 @@ const Lesson = ({ track, lesson }) => {
 			<div className="content-body">
 				<div css={page_header}>
 					<h1>{data.lesson.name}</h1>
-					<p>{data.lesson.description}</p>
-					<p>Objectives:</p>
-					{data.lesson.objective}
+					<MarkDown content={data.lesson.description} />
+					<br />
+					<span className="tag">
+						At the end of this module, you should be able to:
+					</span>
+					<div className="objectives">
+						<MarkDown content={data.lesson.objective} />
+					</div>
 				</div>
 				<div css={pro_tip}>
-					<h1>Pro Tip Goes Here</h1>
+					<h4>Pro Tip Goes Here</h4>
 				</div>
-				<div
-					dangerouslySetInnerHTML={{ __html: md.render(data.lesson.details) }}
-				/>
+				<MarkDown content={data.lesson.details} />
 			</div>
 		</Layout>
 	);

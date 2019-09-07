@@ -7,6 +7,7 @@ import SideMenu from '../components/layout/sideMenu';
 import { GET_TRACK } from '../gql';
 import { pageName, urlName } from '../utils';
 import { home_sprint, page_header } from '../styles';
+import MarkDown from '../components/MarkDown';
 
 const Track = ({ track }) => {
 	const { loading, error, data } = useQuery(GET_TRACK, {
@@ -21,7 +22,7 @@ const Track = ({ track }) => {
 			<div className="content-body">
 				<div css={page_header}>
 					<h2>{pageName(track)}</h2>
-					<p>{data.track.description}</p>
+					<MarkDown content={data.track.description} />
 				</div>
 				{data.track.sprints.map(sprint => (
 					<div css={home_sprint} key={sprint.id}>

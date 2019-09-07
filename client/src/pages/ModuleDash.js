@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
-let md = require('markdown-it')();
 
 import Layout from '../components/layout';
 import Modal from '../components/Modal';
+import ModalContent from '../components/ModalContent';
 import ModuleItem from '../components/ModuleItem';
+import MarkDown from '../components/MarkDown';
 import { CreateModule } from '../components/create/CreateModule';
 import { dash_container, dash_items } from '../styles/index';
 import { GET_SPRINT } from '../gql';
 import { pageName } from '../utils';
-import ModalContent from '../components/ModalContent';
 
 const ModuleDash = ({ track, sprint }) => {
 	const [showModal, setModal] = useState(false);
@@ -28,11 +28,8 @@ const ModuleDash = ({ track, sprint }) => {
 						<Link to={`/dashboard/${track}`}>{sprint}</Link>
 					</div>
 					<h2>{pageName(sprint)}</h2>
-					<div
-						dangerouslySetInnerHTML={{
-							__html: md.render(data.sprint.description)
-						}}
-					/>
+
+					<MarkDown content={data.sprint.description} />
 					<button className="btn primary" onClick={() => setModal(!showModal)}>
 						Create Module
 					</button>

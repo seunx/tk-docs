@@ -87,6 +87,7 @@ export const GET_LESSON = gql`
 			id
 			name
 			description
+			objective
 			details
 		}
 	}
