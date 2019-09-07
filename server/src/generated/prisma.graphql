@@ -30,9 +30,9 @@ type Lesson {
   id: ID!
   name: String!
   description: String!
-  objectives: [String!]!
-  module: Module!
+  objective: String!
   details: String!
+  module: Module!
 }
 
 type LessonConnection {
@@ -45,18 +45,14 @@ input LessonCreateInput {
   id: ID
   name: String!
   description: String!
-  objectives: LessonCreateobjectivesInput
-  module: ModuleCreateOneWithoutLessonsInput!
+  objective: String!
   details: String!
+  module: ModuleCreateOneWithoutLessonsInput!
 }
 
 input LessonCreateManyWithoutModuleInput {
   create: [LessonCreateWithoutModuleInput!]
   connect: [LessonWhereUniqueInput!]
-}
-
-input LessonCreateobjectivesInput {
-  set: [String!]
 }
 
 input LessonCreateOneInput {
@@ -68,7 +64,7 @@ input LessonCreateWithoutModuleInput {
   id: ID
   name: String!
   description: String!
-  objectives: LessonCreateobjectivesInput
+  objective: String!
   details: String!
 }
 
@@ -84,6 +80,8 @@ enum LessonOrderByInput {
   name_DESC
   description_ASC
   description_DESC
+  objective_ASC
+  objective_DESC
   details_ASC
   details_DESC
 }
@@ -92,7 +90,7 @@ type LessonPreviousValues {
   id: ID!
   name: String!
   description: String!
-  objectives: [String!]!
+  objective: String!
   details: String!
 }
 
@@ -139,6 +137,20 @@ input LessonScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  objective: String
+  objective_not: String
+  objective_in: [String!]
+  objective_not_in: [String!]
+  objective_lt: String
+  objective_lte: String
+  objective_gt: String
+  objective_gte: String
+  objective_contains: String
+  objective_not_contains: String
+  objective_starts_with: String
+  objective_not_starts_with: String
+  objective_ends_with: String
+  objective_not_ends_with: String
   details: String
   details_not: String
   details_in: [String!]
@@ -179,30 +191,30 @@ input LessonSubscriptionWhereInput {
 input LessonUpdateDataInput {
   name: String
   description: String
-  objectives: LessonUpdateobjectivesInput
-  module: ModuleUpdateOneRequiredWithoutLessonsInput
+  objective: String
   details: String
+  module: ModuleUpdateOneRequiredWithoutLessonsInput
 }
 
 input LessonUpdateInput {
   name: String
   description: String
-  objectives: LessonUpdateobjectivesInput
-  module: ModuleUpdateOneRequiredWithoutLessonsInput
+  objective: String
   details: String
+  module: ModuleUpdateOneRequiredWithoutLessonsInput
 }
 
 input LessonUpdateManyDataInput {
   name: String
   description: String
-  objectives: LessonUpdateobjectivesInput
+  objective: String
   details: String
 }
 
 input LessonUpdateManyMutationInput {
   name: String
   description: String
-  objectives: LessonUpdateobjectivesInput
+  objective: String
   details: String
 }
 
@@ -223,10 +235,6 @@ input LessonUpdateManyWithWhereNestedInput {
   data: LessonUpdateManyDataInput!
 }
 
-input LessonUpdateobjectivesInput {
-  set: [String!]
-}
-
 input LessonUpdateOneRequiredInput {
   create: LessonCreateInput
   update: LessonUpdateDataInput
@@ -237,7 +245,7 @@ input LessonUpdateOneRequiredInput {
 input LessonUpdateWithoutModuleDataInput {
   name: String
   description: String
-  objectives: LessonUpdateobjectivesInput
+  objective: String
   details: String
 }
 
@@ -300,7 +308,20 @@ input LessonWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  module: ModuleWhereInput
+  objective: String
+  objective_not: String
+  objective_in: [String!]
+  objective_not_in: [String!]
+  objective_lt: String
+  objective_lte: String
+  objective_gt: String
+  objective_gte: String
+  objective_contains: String
+  objective_not_contains: String
+  objective_starts_with: String
+  objective_not_starts_with: String
+  objective_ends_with: String
+  objective_not_ends_with: String
   details: String
   details_not: String
   details_in: [String!]
@@ -315,6 +336,7 @@ input LessonWhereInput {
   details_not_starts_with: String
   details_ends_with: String
   details_not_ends_with: String
+  module: ModuleWhereInput
   AND: [LessonWhereInput!]
   OR: [LessonWhereInput!]
   NOT: [LessonWhereInput!]
@@ -858,6 +880,7 @@ enum Role {
 type Sprint {
   id: ID!
   name: String!
+  description: String!
   track: Track!
   modules(where: ModuleWhereInput, orderBy: ModuleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Module!]
 }
@@ -871,6 +894,7 @@ type SprintConnection {
 input SprintCreateInput {
   id: ID
   name: String!
+  description: String!
   track: TrackCreateOneWithoutSprintsInput!
   modules: ModuleCreateManyWithoutSprintInput
 }
@@ -888,12 +912,14 @@ input SprintCreateOneWithoutModulesInput {
 input SprintCreateWithoutModulesInput {
   id: ID
   name: String!
+  description: String!
   track: TrackCreateOneWithoutSprintsInput!
 }
 
 input SprintCreateWithoutTrackInput {
   id: ID
   name: String!
+  description: String!
   modules: ModuleCreateManyWithoutSprintInput
 }
 
@@ -907,11 +933,14 @@ enum SprintOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  description_ASC
+  description_DESC
 }
 
 type SprintPreviousValues {
   id: ID!
   name: String!
+  description: String!
 }
 
 input SprintScalarWhereInput {
@@ -943,6 +972,20 @@ input SprintScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   AND: [SprintScalarWhereInput!]
   OR: [SprintScalarWhereInput!]
   NOT: [SprintScalarWhereInput!]
@@ -968,16 +1011,19 @@ input SprintSubscriptionWhereInput {
 
 input SprintUpdateInput {
   name: String
+  description: String
   track: TrackUpdateOneRequiredWithoutSprintsInput
   modules: ModuleUpdateManyWithoutSprintInput
 }
 
 input SprintUpdateManyDataInput {
   name: String
+  description: String
 }
 
 input SprintUpdateManyMutationInput {
   name: String
+  description: String
 }
 
 input SprintUpdateManyWithoutTrackInput {
@@ -1006,11 +1052,13 @@ input SprintUpdateOneRequiredWithoutModulesInput {
 
 input SprintUpdateWithoutModulesDataInput {
   name: String
+  description: String
   track: TrackUpdateOneRequiredWithoutSprintsInput
 }
 
 input SprintUpdateWithoutTrackDataInput {
   name: String
+  description: String
   modules: ModuleUpdateManyWithoutSprintInput
 }
 
@@ -1059,6 +1107,20 @@ input SprintWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   track: TrackWhereInput
   modules_every: ModuleWhereInput
   modules_some: ModuleWhereInput
@@ -1086,7 +1148,6 @@ type Track {
   id: ID!
   name: String!
   description: String!
-  details: String!
   sprints(where: SprintWhereInput, orderBy: SprintOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Sprint!]
 }
 
@@ -1100,7 +1161,6 @@ input TrackCreateInput {
   id: ID
   name: String!
   description: String!
-  details: String!
   sprints: SprintCreateManyWithoutTrackInput
 }
 
@@ -1113,7 +1173,6 @@ input TrackCreateWithoutSprintsInput {
   id: ID
   name: String!
   description: String!
-  details: String!
 }
 
 type TrackEdge {
@@ -1128,15 +1187,12 @@ enum TrackOrderByInput {
   name_DESC
   description_ASC
   description_DESC
-  details_ASC
-  details_DESC
 }
 
 type TrackPreviousValues {
   id: ID!
   name: String!
   description: String!
-  details: String!
 }
 
 type TrackSubscriptionPayload {
@@ -1160,14 +1216,12 @@ input TrackSubscriptionWhereInput {
 input TrackUpdateInput {
   name: String
   description: String
-  details: String
   sprints: SprintUpdateManyWithoutTrackInput
 }
 
 input TrackUpdateManyMutationInput {
   name: String
   description: String
-  details: String
 }
 
 input TrackUpdateOneRequiredWithoutSprintsInput {
@@ -1180,7 +1234,6 @@ input TrackUpdateOneRequiredWithoutSprintsInput {
 input TrackUpdateWithoutSprintsDataInput {
   name: String
   description: String
-  details: String
 }
 
 input TrackUpsertWithoutSprintsInput {
@@ -1231,20 +1284,6 @@ input TrackWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  details: String
-  details_not: String
-  details_in: [String!]
-  details_not_in: [String!]
-  details_lt: String
-  details_lte: String
-  details_gt: String
-  details_gte: String
-  details_contains: String
-  details_not_contains: String
-  details_starts_with: String
-  details_not_starts_with: String
-  details_ends_with: String
-  details_not_ends_with: String
   sprints_every: SprintWhereInput
   sprints_some: SprintWhereInput
   sprints_none: SprintWhereInput
