@@ -147,3 +147,44 @@ export const home_sprint = css`
 		padding: 1rem 0;
 	}
 `;
+
+export const modal_content = css`
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+	/* max-width: 900px; */
+	padding: 30px 40px;
+	border-radius: 5px;
+	text-align: center;
+
+	h3 {
+		margin-bottom: 1rem;
+	}
+	input {
+		font-size: 1.5rem;
+		padding: 5px 0 0 10px;
+		border: none;
+		border-radius: 3px;
+		border-bottom: 2px solid #bb1333;
+		margin-bottom: 1rem;
+		background-color: #f0f4f7;
+		outline: none;
+	}
+	textarea {
+		width: 600px;
+		height: 244px;
+		font-size: 1.5rem;
+		padding: 5px 0 0 10px;
+		border: none;
+		border-radius: 3px;
+		border-bottom: 2px solid #bb1333;
+		background-color: #f0f4f7;
+		max-width: 1080px;
+		outline: none;
+	}
+
+	.btn-container {
+		display: flex;
+		padding: 15px 0;
+	}
+`;

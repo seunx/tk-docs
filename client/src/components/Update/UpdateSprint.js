@@ -3,13 +3,13 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { UPDATE_SPRINT } from '../../gql';
 
-export const UpdateSprint = ({ setModal, track, sprint }) => {
+export const UpdateSprint = ({ setModal, track, sprint, description }) => {
 	const [info, updateInfo] = useState({
 		name: sprint,
-		sprintTrack: track
+		description: description
 	});
 	const [updateSprint, { data }] = useMutation(UPDATE_SPRINT, {
-		variables: { where: { name: sprint }, data: { name: info.name } }
+		variables: { where: { name: sprint }, data: { ...info } }
 		/*refetchQueries: { query: GET_TRACKS }*/
 	});
 
@@ -22,7 +22,7 @@ export const UpdateSprint = ({ setModal, track, sprint }) => {
 		setModal(false);
 	};
 	return (
-		<div>
+		<>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -35,10 +35,23 @@ export const UpdateSprint = ({ setModal, track, sprint }) => {
 				type="text"
 				name="sprintTrack"
 				disabled
-				value={info.sprintTrack}
+				value={track}
 			/>
-			<button onClick={_handleClick}>Update Sprint</button>
-		</div>
+			<textarea
+				onChange={_handleChange}
+				type="text"
+				name="description"
+				value={info.description}
+			/>
+			<div className="btn-container">
+				<button className="btn primary" onClick={_handleClick}>
+					Update
+				</button>
+				<button className="btn light" onClick={() => setModal(false)}>
+					Cancel
+				</button>
+			</div>
+		</>
 	);
 };
 

@@ -3,11 +3,10 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { UPDATE_TRACK } from '../../gql';
 
-export const UpdateTrack = ({ setModal, track, description, details }) => {
+export const UpdateTrack = ({ setModal, track, description }) => {
 	const [info, updateInfo] = useState({
 		name: track,
-		description: description,
-		details: details
+		description: description
 	});
 	const [updateTrack, { data }] = useMutation(UPDATE_TRACK, {
 		variables: { where: { name: track }, data: { ...info } }
@@ -23,7 +22,7 @@ export const UpdateTrack = ({ setModal, track, description, details }) => {
 		setModal(false);
 	};
 	return (
-		<div>
+		<>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -31,21 +30,22 @@ export const UpdateTrack = ({ setModal, track, description, details }) => {
 				placeholder="Track Name"
 				value={info.name}
 			/>
-			<input
+			<textarea
 				onChange={_handleChange}
 				type="text"
 				name="description"
 				placeholder="Description"
 				value={info.description}
 			/>
-			<textarea
-				onChange={_handleChange}
-				name="details"
-				placeholder="Track Details"
-				value={info.details}
-			/>
-			<button onClick={_handleClick}>Update Track</button>
-		</div>
+			<div className="btn-container">
+				<button className="btn primary" onClick={_handleClick}>
+					Update
+				</button>
+				<button className="btn light" onClick={() => setModal(false)}>
+					Cancel
+				</button>
+			</div>
+		</>
 	);
 };
 

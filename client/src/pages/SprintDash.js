@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
+let md = require('markdown-it')({
+	html: true,
+	linkify: true,
+	typographer: true,
+	highlight: function(str, lang) {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(lang, str).value;
+			} catch (__) {}
+		}
+
+		return ''; // use external default escaping
+	}
+});
 
 import Layout from '../components/layout';
 import Modal from '../components/Modal';
+import ModalContent from '../components/ModalContent';
 import CreateSprint from '../components/create/CreateSprint';
 import SprintItem from '../components/SprintItem';
 import { GET_TRACK } from '../gql/index';
@@ -25,17 +40,22 @@ const SprintDash = ({ track }) => {
 						<Link to="/dashboard">{track}</Link>
 					</div>
 					<h2>{pageName(track)}</h2>
-					<p>{data.track.description}</p>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: md.render(data.track.description)
+						}}
+					/>
 					<button className="btn primary" onClick={() => setModal(!showModal)}>
 						Create Sprint
 					</button>
 				</div>
 				{showModal ? (
 					<Modal>
-						<div className="btn-container">
-							<button onClick={() => setModal(!showModal)}>Close Modal</button>
-						</div>
-						<CreateSprint setModal={setModal} track={track} />
+						<ModalContent
+							header="New Sprint"
+							setModal={setModal}
+							component={<CreateSprint track={track} setModal={setModal} />}
+						/>
 					</Modal>
 				) : null}
 				<div css={dash_items}>

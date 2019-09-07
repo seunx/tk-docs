@@ -30,11 +30,7 @@ const Module = ({ track, module }) => {
 							</Link>
 							<p>{lesson.description}</p>
 							<p>Objectives:</p>
-							<ul>
-								{lesson.objectives.map((obj, i) => (
-									<li key={i}>{obj}</li>
-								))}
-							</ul>
+							{lesson.objective}
 						</div>
 					);
 				})}

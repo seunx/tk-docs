@@ -9,6 +9,7 @@ import CreateLesson from '../components/Create/CreateLesson';
 import { pageName } from '../utils';
 import { GET_MODULE } from '../gql/index';
 import { dash_container, dash_items } from '../styles/index';
+import ModalContent from '../components/ModalContent';
 
 const LessonDash = ({ sprint, track, module }) => {
 	const [showModal, setModal] = useState(false);
@@ -35,11 +36,13 @@ const LessonDash = ({ sprint, track, module }) => {
 				</div>
 				{showModal ? (
 					<Modal>
-						<h1>Create Lesson</h1>
-						<div className="btn-container">
-							<button onClick={() => setModal(!showModal)}>Close Modal</button>
-						</div>
-						<CreateLesson setModal={setModal} module={pageName(module)} />
+						<ModalContent
+							header="New Lesson"
+							setModal={setModal}
+							component={
+								<CreateLesson setModal={setModal} module={pageName(module)} />
+							}
+						/>
 					</Modal>
 				) : null}
 				<div css={dash_items}>

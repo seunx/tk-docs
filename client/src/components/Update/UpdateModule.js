@@ -22,7 +22,7 @@ export const UpdateModule = ({ setModal, sprint, module, description }) => {
 		setModal(false);
 	};
 	return (
-		<div>
+		<>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -30,16 +30,23 @@ export const UpdateModule = ({ setModal, sprint, module, description }) => {
 				placeholder="Module Name"
 				value={info.name}
 			/>
-			<input
+			<input type="text" name="moduleSprint" value={sprint} disabled />
+			<textarea
 				onChange={_handleChange}
 				type="text"
 				name="description"
 				placeholder="Description"
 				value={info.description}
 			/>
-			<input type="text" name="moduleSprint" value={sprint} disabled />
-			<button onClick={_handleClick}>Update Module</button>
-		</div>
+			<div className="btn-container">
+				<button className="btn primary" onClick={_handleClick}>
+					Update
+				</button>
+				<button className="btn light" onClick={() => setModal(false)}>
+					Cancel
+				</button>
+			</div>
+		</>
 	);
 };
 

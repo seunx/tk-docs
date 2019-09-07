@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
 
 import UpdateTrack from '../components/update/UpdateTrack';
+import ModalContent from './ModalContent';
 import Modal from '../components/Modal';
 import { DELETE_TRACK } from '../gql';
 import { urlName, excerpt } from '../utils/index';
@@ -18,21 +19,23 @@ const TrackItem = ({ track }) => {
 	});
 	return (
 		<div css={dash_item}>
-			<Link to={`/dashboard/${urlName(track.name)}`}>
-				<h4>{track.name}</h4>
-			</Link>
+			<h4>
+				<Link to={`/dashboard/${urlName(track.name)}`}>{track.name}</Link>
+			</h4>
 			<p>{excerpt(track.description)}</p>
 			{showModal ? (
 				<Modal>
-					<h1 style={{ fontSize: '1rem' }}>Update Track</h1>
-					<div className="btn-container">
-						<button onClick={() => setModal(!showModal)}>Close Modal</button>
-					</div>
-					<UpdateTrack
+					<ModalContent
+						header="Update Track"
 						setModal={setModal}
-						track={track.name}
-						description={track.description}
-						details={track.details}
+						component={
+							<UpdateTrack
+								setModal={setModal}
+								track={track.name}
+								description={track.description}
+								details={track.details}
+							/>
+						}
 					/>
 				</Modal>
 			) : null}

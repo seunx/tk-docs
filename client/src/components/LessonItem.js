@@ -7,6 +7,7 @@ import Modal from '../components/Modal';
 import { DELETE_LESSON } from '../gql';
 import { urlName, pageName } from '../utils/index';
 import { dash_item } from '../styles';
+import ModalContent from './ModalContent';
 
 const LessonItem = ({ track, sprint, module, lesson }) => {
 	const [showModal, setModal] = useState(false);
@@ -21,25 +22,23 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 			<Link
 				to={`/dashboard/${track}/${sprint}/${module}/${urlName(lesson.name)}`}
 			>
-				<h3>{lesson.name}</h3>
+				<h4>{lesson.name}</h4>
 			</Link>
 			<p>{lesson.description}</p>
 			<p>Objectives:</p>
-			<ul>
-				{lesson.objectives.map((o, i) => (
-					<li key={o[0] + i}>{o}</li>
-				))}
-			</ul>
+			{lesson.objective}
 			{showModal ? (
 				<Modal>
-					<h1 style={{ fontSize: '1rem' }}>Update Lesson</h1>
-					<div className="btn-container">
-						<button onClick={() => setModal(!showModal)}>Close Modal</button>
-					</div>
-					<UpdateLesson
+					<ModalContent
+						header="Update Lesson"
 						setModal={setModal}
-						module={pageName(module)}
-						lesson={lesson}
+						component={
+							<UpdateLesson
+								setModal={setModal}
+								module={pageName(module)}
+								lesson={lesson}
+							/>
+						}
 					/>
 				</Modal>
 			) : null}

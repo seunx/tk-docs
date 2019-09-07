@@ -9,6 +9,7 @@ export const GET_TRACK = gql`
 			sprints {
 				id
 				name
+				description
 				modules {
 					id
 					name
@@ -27,6 +28,7 @@ export const GET_SPRINT = gql`
 		sprint(where: $where) {
 			id
 			name
+			description
 			modules {
 				id
 				name
@@ -72,7 +74,7 @@ export const GET_MODULE = gql`
 				id
 				name
 				description
-				objectives
+				objective
 				details
 			}
 		}
@@ -85,7 +87,6 @@ export const GET_LESSON = gql`
 			id
 			name
 			description
-			objectives
 			details
 		}
 	}

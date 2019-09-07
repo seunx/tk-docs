@@ -4,6 +4,7 @@ import { Link } from '@reach/router';
 
 import UpdateModule from './Update/UpdateModule';
 import Modal from '../components/Modal';
+import ModalContent from './ModalContent';
 import { DELETE_MODULE } from '../gql';
 import { urlName, pageName, excerpt } from '../utils/index';
 import { dash_item } from '../styles';
@@ -18,21 +19,25 @@ const ModuleItem = ({ track, sprint, module }) => {
 	});
 	return (
 		<div css={dash_item}>
-			<Link to={`/dashboard/${track}/${sprint}/${urlName(module.name)}`}>
-				<h4>{module.name}</h4>
-			</Link>
+			<h4>
+				<Link to={`/dashboard/${track}/${sprint}/${urlName(module.name)}`}>
+					{module.name}
+				</Link>
+			</h4>
 			<p>{excerpt(module.description, 200)}</p>
 			{showModal ? (
 				<Modal>
-					<h1 style={{ fontSize: '1rem' }}>Update Module</h1>
-					<div className="btn-container">
-						<button onClick={() => setModal(!showModal)}>Close Modal</button>
-					</div>
-					<UpdateModule
+					<ModalContent
+						header="Update Module"
 						setModal={setModal}
-						sprint={pageName(sprint)}
-						module={module.name}
-						description={module.description}
+						component={
+							<UpdateModule
+								setModal={setModal}
+								sprint={pageName(sprint)}
+								module={module.name}
+								description={module.description}
+							/>
+						}
 					/>
 				</Modal>
 			) : null}

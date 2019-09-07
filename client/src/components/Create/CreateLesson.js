@@ -7,30 +7,17 @@ export const CreateLesson = ({ setModal, module }) => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: '',
-		lessonModule: module,
-		objectives: [],
 		details: '',
 		objective: ''
 	});
 	const [createLesson, { data }] = useMutation(CREATE_LESSON, {
 		variables: {
-			data: {
-				name: info.name,
-				description: info.description,
-				objectives: { set: info.objectives },
-				details: info.details,
-				module: { connect: { name: info.lessonModule } }
-			}
+			data: { ...info, module: { connect: { name: module } } }
 		}
 	});
 	const _handleChange = e => {
 		const { name, value } = e.target;
 		updateInfo({ ...info, [name]: value });
-	};
-	const _addObjective = e => {
-		e.preventDefault();
-		info.objectives.push(info.objective);
-		updateInfo({ ...info, objective: '' });
 	};
 	const _handleClick = async e => {
 		await createLesson();
@@ -38,7 +25,7 @@ export const CreateLesson = ({ setModal, module }) => {
 	};
 
 	return (
-		<div>
+		<>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -46,7 +33,7 @@ export const CreateLesson = ({ setModal, module }) => {
 				placeholder="Lesson Name"
 				value={info.name}
 			/>
-			<input
+			<textarea
 				onChange={_handleChange}
 				type="text"
 				name="description"
@@ -54,26 +41,28 @@ export const CreateLesson = ({ setModal, module }) => {
 				value={info.description}
 			/>
 			<input type="text" name="lessonModule" value={module} disabled />
-			<div>
-				Enter Objectives
-				<input
-					onChange={_handleChange}
-					type="text"
-					name="objective"
-					placeholder="Lesson Objectives"
-					value={info.objective}
-				/>
-				<button onClick={_addObjective}>Add</button>
-				{info.objectives.map(o => o)}
-			</div>
+			<textarea
+				onChange={_handleChange}
+				type="text"
+				name="objective"
+				placeholder="Lesson Objectives"
+				value={info.objective}
+			/>
 			<textarea
 				onChange={_handleChange}
 				name="details"
 				placeholder="Lesson Details"
 				value={info.details}
 			/>
-			<button onClick={_handleClick}>Create Lesson</button>
-		</div>
+			<div className="btn-container">
+				<button className="btn primary" onClick={_handleClick}>
+					Create
+				</button>
+				<button className="btn light" onClick={() => setModal(false)}>
+					Cancel
+				</button>
+			</div>
+		</>
 	);
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
+let md = require('markdown-it')();
 
 import Layout from '../components/layout';
 import Modal from '../components/Modal';
@@ -9,6 +10,7 @@ import { CreateModule } from '../components/create/CreateModule';
 import { dash_container, dash_items } from '../styles/index';
 import { GET_SPRINT } from '../gql';
 import { pageName } from '../utils';
+import ModalContent from '../components/ModalContent';
 
 const ModuleDash = ({ track, sprint }) => {
 	const [showModal, setModal] = useState(false);
@@ -26,23 +28,22 @@ const ModuleDash = ({ track, sprint }) => {
 						<Link to={`/dashboard/${track}`}>{sprint}</Link>
 					</div>
 					<h2>{pageName(sprint)}</h2>
-					<div style={{ display: 'flex' }}>
-						<p>{data.sprint.description}</p>
-						<button
-							className="btn primary"
-							onClick={() => setModal(!showModal)}
-						>
-							Create Module
-						</button>
-					</div>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: md.render(data.sprint.description)
+						}}
+					/>
+					<button className="btn primary" onClick={() => setModal(!showModal)}>
+						Create Module
+					</button>
 				</div>
 				{showModal ? (
 					<Modal>
-						<h1>Create Module</h1>
-						<div className="btn-container">
-							<button onClick={() => setModal(!showModal)}>Close Modal</button>
-						</div>
-						<CreateModule setModal={setModal} sprint={sprint} />
+						<ModalContent
+							header="New Module"
+							setModal={setModal}
+							component={<CreateModule setModal={setModal} sprint={sprint} />}
+						/>
 					</Modal>
 				) : null}
 				<div css={dash_items}>

@@ -28,7 +28,7 @@ const Track = ({ track }) => {
 						<h3>{sprint.name}</h3>
 
 						{sprint.modules.map(module => (
-							<div className="home-modules">
+							<div className="home-modules" key={module.id}>
 								<Link to={`/course/${track}/${urlName(module.name)}`}>
 									<h4>{module.name}</h4>
 								</Link>

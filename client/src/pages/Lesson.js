@@ -37,11 +37,7 @@ const Lesson = ({ track, lesson }) => {
 					<h1>{data.lesson.name}</h1>
 					<p>{data.lesson.description}</p>
 					<p>Objectives:</p>
-					<ul>
-						{data.lesson.objectives.map((obj, i) => (
-							<li key={i}>{obj}</li>
-						))}
-					</ul>
+					{data.lesson.objective}
 				</div>
 				<div css={pro_tip}>
 					<h1>Pro Tip Goes Here</h1>

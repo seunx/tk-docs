@@ -7,16 +7,11 @@ import { pageName } from '../../utils';
 export const CreateModule = ({ setModal, sprint }) => {
 	const [info, updateInfo] = useState({
 		name: '',
-		description: '',
-		moduleSprint: pageName(sprint)
+		description: ''
 	});
 	const [createModule, { data }] = useMutation(CREATE_MODULE, {
 		variables: {
-			data: {
-				name: info.name,
-				description: info.description,
-				sprint: { connect: { name: info.moduleSprint } }
-			}
+			data: { ...info, sprint: { connect: { name: pageName(sprint) } } }
 		}
 	});
 	const _handleChange = e => {
@@ -29,7 +24,7 @@ export const CreateModule = ({ setModal, sprint }) => {
 		setModal(false);
 	};
 	return (
-		<div>
+		<>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -38,20 +33,27 @@ export const CreateModule = ({ setModal, sprint }) => {
 				value={info.name}
 			/>
 			<input
+				type="text"
+				name="moduleSprint"
+				value={pageName(sprint)}
+				disabled
+			/>
+			<textarea
 				onChange={_handleChange}
 				type="text"
 				name="description"
 				placeholder="Description"
 				value={info.description}
 			/>
-			<input
-				type="text"
-				name="moduleSprint"
-				value={pageName(sprint)}
-				disabled
-			/>
-			<button onClick={_handleClick}>Create Module</button>
-		</div>
+			<div className="btn-container">
+				<button className="btn primary" onClick={_handleClick}>
+					Create
+				</button>
+				<button className="btn light" onClick={() => setModal(false)}>
+					Cancel
+				</button>
+			</div>
+		</>
 	);
 };
 

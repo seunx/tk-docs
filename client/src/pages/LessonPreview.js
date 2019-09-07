@@ -41,11 +41,7 @@ const LessonPreview = ({ track, sprint, module, lesson }) => {
 					<h1>{data.lesson.name}</h1>
 					<p>{data.lesson.description}</p>
 					<p>Objectives:</p>
-					<ul>
-						{data.lesson.objectives.map((o, i) => (
-							<li key={o[0] + i}>{o}</li>
-						))}
-					</ul>
+					{data.lesson.objective}
 				</div>
 				<div css={pro_tip}>
 					<p>Pro Tip Goes Here</p>

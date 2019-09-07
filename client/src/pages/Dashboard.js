@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import Layout from '../components/layout';
+import CreateTrack from '../components/create/CreateTrack';
+import ModalContent from '../components/ModalContent';
 import TrackItem from '../components/TrackItem';
 import Modal from '../components/Modal';
 import { GET_TRACKS } from '../gql';
-import { dash_container, dash_items } from '../styles';
-import CreateTrack from '../components/create/CreateTrack';
+import { dash_container, dash_items, modal_content } from '../styles';
 
 const Dashboard = () => {
 	const [showModal, setModal] = useState(false);
@@ -25,11 +26,11 @@ const Dashboard = () => {
 				</div>
 				{showModal ? (
 					<Modal>
-						<h1 style={{ fontSize: '1rem' }}>Create Track</h1>
-						<div className="btn-container">
-							<button onClick={() => setModal(!showModal)}>Close Modal</button>
-						</div>
-						<CreateTrack setModal={setModal} />
+						<ModalContent
+							header="New Track"
+							setModal={setModal}
+							component={<CreateTrack setModal={setModal} />}
+						/>
 					</Modal>
 				) : null}
 				<div css={dash_items}>
