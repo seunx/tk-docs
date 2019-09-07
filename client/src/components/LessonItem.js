@@ -6,6 +6,7 @@ import UpdateLesson from './Update/UpdateLesson';
 import Modal from '../components/Modal';
 import { DELETE_LESSON } from '../gql';
 import { urlName, pageName } from '../utils/index';
+import { dash_item } from '../styles';
 
 const LessonItem = ({ track, sprint, module, lesson }) => {
 	const [showModal, setModal] = useState(false);
@@ -16,11 +17,11 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 		}
 	});
 	return (
-		<div>
+		<div css={dash_item}>
 			<Link
 				to={`/dashboard/${track}/${sprint}/${module}/${urlName(lesson.name)}`}
 			>
-				<h1>{lesson.name}</h1>
+				<h3>{lesson.name}</h3>
 			</Link>
 			<p>{lesson.description}</p>
 			<p>Objectives:</p>
@@ -29,7 +30,6 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 					<li key={o[0] + i}>{o}</li>
 				))}
 			</ul>
-			<button onClick={deleteLesson}>Delete Item</button>
 			{showModal ? (
 				<Modal>
 					<h1 style={{ fontSize: '1rem' }}>Update Lesson</h1>
@@ -43,7 +43,14 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 					/>
 				</Modal>
 			) : null}
-			<button onClick={() => setModal(!showModal)}>Edit Item</button>
+			<div>
+				<button className="btn secondary" onClick={() => setModal(!showModal)}>
+					Edit Item
+				</button>
+				<button className="btn light" onClick={deleteLesson}>
+					Delete Item
+				</button>
+			</div>
 		</div>
 	);
 };

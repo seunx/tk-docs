@@ -5,7 +5,8 @@ import { Link } from '@reach/router';
 import UpdateTrack from '../components/update/UpdateTrack';
 import Modal from '../components/Modal';
 import { DELETE_TRACK } from '../gql';
-import { urlName } from '../utils/index';
+import { urlName, excerpt } from '../utils/index';
+import { dash_item } from '../styles';
 
 const TrackItem = ({ track }) => {
 	const [showModal, setModal] = useState(false);
@@ -16,12 +17,11 @@ const TrackItem = ({ track }) => {
 		}
 	});
 	return (
-		<div>
+		<div css={dash_item}>
 			<Link to={`/dashboard/${urlName(track.name)}`}>
-				<h1>{track.name}</h1>
+				<h4>{track.name}</h4>
 			</Link>
-			<p>{track.description}</p>
-			<button onClick={deleteTrack}>Delete Item</button>
+			<p>{excerpt(track.description)}</p>
 			{showModal ? (
 				<Modal>
 					<h1 style={{ fontSize: '1rem' }}>Update Track</h1>
@@ -36,7 +36,14 @@ const TrackItem = ({ track }) => {
 					/>
 				</Modal>
 			) : null}
-			<button onClick={() => setModal(!showModal)}>Edit Item</button>
+			<div>
+				<button className="btn secondary" onClick={() => setModal(!showModal)}>
+					Edit Item
+				</button>
+				<button className="btn light" onClick={deleteTrack}>
+					Delete Item
+				</button>
+			</div>
 		</div>
 	);
 };

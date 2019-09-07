@@ -57,6 +57,7 @@ export const main = css`
 				background-color: #14121f;
 				border-radius: 5px;
 				text-align: center;
+				height: 100%;
 			}
 			.track-0 {
 				background-color: #14121f;
@@ -83,18 +84,43 @@ export const main = css`
 export const dash_container = css`
 	width: 100%;
 	padding: 0 4rem;
+	a {
+		display: inline-block;
+	}
+	.dash-header {
+		margin-bottom: 1rem;
+
+		button {
+			margin: 1rem 0 0 0;
+		}
+	}
 `;
 export const dash_items = css`
 	display: grid;
-	grid-template-columns: repeat(1, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	grid-gap: 1rem;
 	p {
 		text-align: justify;
 	}
 	width: 100%;
-	margin: 0 1rem;
 `;
-
+export const dash_item = css`
+	width: 100%;
+	/* border-bottom: 2px solid #3ab5e5; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	/* align-content: space-between; */
+	a {
+		color: #3ab5e5;
+	}
+	a:hover {
+		color: #0c3c78;
+	}
+	p {
+		padding: 10px 0;
+	}
+`;
 export const page_header = css`
 	background-color: #fff;
 	border-radius: 5px;

@@ -20,15 +20,18 @@ const LessonDash = ({ sprint, track, module }) => {
 	return (
 		<Layout>
 			<div css={dash_container}>
-				<div>
-					<Link to="/dashboard">{track}</Link> >{' '}
-					<Link to={`/dashboard/${track}`}>{sprint}</Link> >{' '}
-					<Link to={`/dashboard/${track}/${sprint}`}>{module}</Link>
-				</div>
-				<h1>{pageName(module)}</h1>
-				<div style={{ display: 'flex' }}>
+				<div className="dash-header">
+					<div>
+						<Link to="/dashboard">{track}</Link> >{' '}
+						<Link to={`/dashboard/${track}`}>{sprint}</Link> >{' '}
+						<Link to={`/dashboard/${track}/${sprint}`}>{module}</Link>
+					</div>
+					<h2>{pageName(module)}</h2>
+
 					<p>{data.module.description}</p>
-					<button onClick={() => setModal(!showModal)}>Create Lesson</button>
+					<button className="btn primary" onClick={() => setModal(!showModal)}>
+						Create Lesson
+					</button>
 				</div>
 				{showModal ? (
 					<Modal>

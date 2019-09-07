@@ -20,13 +20,15 @@ const SprintDash = ({ track }) => {
 	return (
 		<Layout>
 			<div css={dash_container}>
-				<div>
-					<Link to="/dashboard">{track}</Link>
-				</div>
-				<h1>{pageName(track)}</h1>
-				<div style={{ display: 'flex' }}>
+				<div className="dash-header">
+					<div className="crumbs">
+						<Link to="/dashboard">{track}</Link>
+					</div>
+					<h2>{pageName(track)}</h2>
 					<p>{data.track.description}</p>
-					<button onClick={() => setModal(!showModal)}>Create Sprint</button>
+					<button className="btn primary" onClick={() => setModal(!showModal)}>
+						Create Sprint
+					</button>
 				</div>
 				{showModal ? (
 					<Modal>

@@ -5,7 +5,8 @@ import { Link } from '@reach/router';
 import UpdateModule from './Update/UpdateModule';
 import Modal from '../components/Modal';
 import { DELETE_MODULE } from '../gql';
-import { urlName, pageName } from '../utils/index';
+import { urlName, pageName, excerpt } from '../utils/index';
+import { dash_item } from '../styles';
 
 const ModuleItem = ({ track, sprint, module }) => {
 	const [showModal, setModal] = useState(false);
@@ -16,12 +17,11 @@ const ModuleItem = ({ track, sprint, module }) => {
 		}
 	});
 	return (
-		<div>
+		<div css={dash_item}>
 			<Link to={`/dashboard/${track}/${sprint}/${urlName(module.name)}`}>
-				<h1>{module.name}</h1>
+				<h4>{module.name}</h4>
 			</Link>
-			<p>{module.description}</p>
-			<button onClick={deleteModule}>Delete Item</button>
+			<p>{excerpt(module.description, 200)}</p>
 			{showModal ? (
 				<Modal>
 					<h1 style={{ fontSize: '1rem' }}>Update Module</h1>
@@ -36,7 +36,14 @@ const ModuleItem = ({ track, sprint, module }) => {
 					/>
 				</Modal>
 			) : null}
-			<button onClick={() => setModal(!showModal)}>Edit Item</button>
+			<div>
+				<button className="btn secondary" onClick={() => setModal(!showModal)}>
+					Edit Item
+				</button>
+				<button className="btn light" onClick={deleteModule}>
+					Delete Item
+				</button>
+			</div>
 		</div>
 	);
 };

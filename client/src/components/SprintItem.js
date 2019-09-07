@@ -6,6 +6,7 @@ import UpdateSprint from './Update/UpdateSprint';
 import Modal from '../components/Modal';
 import { DELETE_SPRINT } from '../gql';
 import { urlName, pageName } from '../utils/index';
+import { dash_item } from '../styles';
 
 const SprintItem = ({ track, sprint }) => {
 	const [showModal, setModal] = useState(false);
@@ -16,12 +17,11 @@ const SprintItem = ({ track, sprint }) => {
 		}
 	});
 	return (
-		<div>
+		<div css={dash_item}>
 			<Link to={`/dashboard/${urlName(track)}/${urlName(sprint.name)}`}>
-				<h1>{sprint.name}</h1>
+				<h4>{sprint.name}</h4>
 			</Link>
 			<p>{sprint.description}</p>
-			<button onClick={deleteSprint}>Delete Item</button>
 			{showModal ? (
 				<Modal>
 					<h1 style={{ fontSize: '1rem' }}>Update Sprint</h1>
@@ -35,7 +35,14 @@ const SprintItem = ({ track, sprint }) => {
 					/>
 				</Modal>
 			) : null}
-			<button onClick={() => setModal(!showModal)}>Edit Item</button>
+			<div>
+				<button className="btn secondary" onClick={() => setModal(!showModal)}>
+					Edit Item
+				</button>
+				<button className="btn light" onClick={deleteSprint}>
+					Delete Item
+				</button>
+			</div>
 		</div>
 	);
 };

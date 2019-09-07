@@ -16,15 +16,12 @@ const Dashboard = () => {
 	return (
 		<Layout>
 			<div css={dash_container}>
-				<h1>Track Dashboard</h1>
-				<div>
-					<p>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi
-						commodi laboriosam rerum inventore eum veniam, ducimus excepturi
-						quasi neque quam voluptate quia error eos sapiente totam blanditiis
-						eveniet soluta quibusdam.
-					</p>
-					<button onClick={() => setModal(!showModal)}>Create Track</button>
+				<div className="dash-header">
+					<h2>Track Dashboard</h2>
+					<p>A list of all Lambda School Tracks.</p>
+					<button className="btn primary" onClick={() => setModal(!showModal)}>
+						Create Track
+					</button>
 				</div>
 				{showModal ? (
 					<Modal>

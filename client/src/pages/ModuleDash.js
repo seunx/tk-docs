@@ -20,14 +20,21 @@ const ModuleDash = ({ track, sprint }) => {
 	return (
 		<Layout>
 			<div css={dash_container}>
-				<div>
-					<Link to="/dashboard">{track}</Link> >{' '}
-					<Link to={`/dashboard/${track}`}>{sprint}</Link>
-				</div>
-				<h1>{pageName(sprint)}</h1>
-				<div style={{ display: 'flex' }}>
-					<p>{data.sprint.description}</p>
-					<button onClick={() => setModal(!showModal)}>Create Module</button>
+				<div className="dash-header">
+					<div>
+						<Link to="/dashboard">{track}</Link> >{' '}
+						<Link to={`/dashboard/${track}`}>{sprint}</Link>
+					</div>
+					<h2>{pageName(sprint)}</h2>
+					<div style={{ display: 'flex' }}>
+						<p>{data.sprint.description}</p>
+						<button
+							className="btn primary"
+							onClick={() => setModal(!showModal)}
+						>
+							Create Module
+						</button>
+					</div>
 				</div>
 				{showModal ? (
 					<Modal>
