@@ -14,7 +14,7 @@ import MarkDown from './../components/MarkDown';
 
 const LessonDash = ({ sprint, track, module }) => {
 	const [showModal, setModal] = useState(false);
-	const { loading, error, data } = useQuery(GET_MODULE, {
+	const { loading, error, data, refetch } = useQuery(GET_MODULE, {
 		variables: { where: { name: pageName(module) } }
 	});
 	if (loading) return <p>Loading...</p>;
@@ -41,7 +41,11 @@ const LessonDash = ({ sprint, track, module }) => {
 							header="New Lesson"
 							setModal={setModal}
 							component={
-								<CreateLesson setModal={setModal} module={pageName(module)} />
+								<CreateLesson
+									setModal={setModal}
+									module={pageName(module)}
+									refetch={refetch}
+								/>
 							}
 						/>
 					</Modal>
@@ -54,6 +58,7 @@ const LessonDash = ({ sprint, track, module }) => {
 							track={track}
 							module={module}
 							lesson={lesson}
+							refetch={refetch}
 						/>
 					))}
 				</div>

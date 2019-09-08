@@ -13,7 +13,6 @@ const Track = ({ track }) => {
 	const { loading, error, data } = useQuery(GET_TRACK, {
 		variables: { where: { name: pageName(track) } }
 	});
-	console.log(data);
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error...</p>;
 	return (

@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { CREATE_MODULE } from '../../gql';
 import { pageName } from '../../utils';
 
-export const CreateModule = ({ setModal, sprint }) => {
+export const CreateModule = ({ setModal, sprint, refetch }) => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: ''
@@ -21,6 +21,7 @@ export const CreateModule = ({ setModal, sprint }) => {
 
 	const _handleClick = async e => {
 		await createModule();
+		refetch();
 		setModal(false);
 	};
 	return (

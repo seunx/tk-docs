@@ -3,14 +3,13 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { UPDATE_TRACK } from '../../gql';
 
-export const UpdateTrack = ({ setModal, track, description }) => {
+export const UpdateTrack = ({ setModal, track, description, refetch }) => {
 	const [info, updateInfo] = useState({
 		name: track,
 		description: description
 	});
 	const [updateTrack, { data }] = useMutation(UPDATE_TRACK, {
 		variables: { where: { name: track }, data: { ...info } }
-		/*refetchQueries: { query: GET_TRACKS }*/
 	});
 
 	const _handleChange = e => {
@@ -19,6 +18,7 @@ export const UpdateTrack = ({ setModal, track, description }) => {
 	};
 	const _handleClick = async e => {
 		await updateTrack();
+		refetch();
 		setModal(false);
 	};
 	return (

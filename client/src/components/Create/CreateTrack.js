@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { CREATE_TRACK } from '../../gql';
 
-export const CreateTrack = ({ setModal }) => {
+export const CreateTrack = ({ setModal, refetch }) => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: ''
@@ -19,6 +19,7 @@ export const CreateTrack = ({ setModal }) => {
 	};
 	const _handleClick = async e => {
 		await createTrack();
+		refetch();
 		setModal(false);
 	};
 	return (

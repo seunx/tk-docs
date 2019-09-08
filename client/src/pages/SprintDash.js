@@ -14,7 +14,7 @@ import MarkDown from '../components/MarkDown';
 
 const SprintDash = ({ track }) => {
 	const [showModal, setModal] = useState(false);
-	const { loading, error, data } = useQuery(GET_TRACK, {
+	const { loading, error, data, refetch } = useQuery(GET_TRACK, {
 		variables: { where: { name: pageName(track) } }
 	});
 	if (loading) return <p>Loading...</p>;
@@ -39,13 +39,24 @@ const SprintDash = ({ track }) => {
 						<ModalContent
 							header="New Sprint"
 							setModal={setModal}
-							component={<CreateSprint track={track} setModal={setModal} />}
+							component={
+								<CreateSprint
+									track={track}
+									setModal={setModal}
+									refetch={refetch}
+								/>
+							}
 						/>
 					</Modal>
 				) : null}
 				<div css={dash_items}>
 					{data.track.sprints.map(sprint => (
-						<SprintItem key={sprint.id} sprint={sprint} track={track} />
+						<SprintItem
+							key={sprint.id}
+							sprint={sprint}
+							track={track}
+							refetch={refetch}
+						/>
 					))}
 				</div>
 			</div>

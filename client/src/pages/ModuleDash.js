@@ -14,7 +14,7 @@ import { pageName } from '../utils';
 
 const ModuleDash = ({ track, sprint }) => {
 	const [showModal, setModal] = useState(false);
-	const { loading, error, data } = useQuery(GET_SPRINT, {
+	const { loading, error, data, refetch } = useQuery(GET_SPRINT, {
 		variables: { where: { name: pageName(sprint) } }
 	});
 	if (loading) return <p>Loading...</p>;
@@ -39,7 +39,13 @@ const ModuleDash = ({ track, sprint }) => {
 						<ModalContent
 							header="New Module"
 							setModal={setModal}
-							component={<CreateModule setModal={setModal} sprint={sprint} />}
+							component={
+								<CreateModule
+									setModal={setModal}
+									sprint={sprint}
+									refetch={refetch}
+								/>
+							}
 						/>
 					</Modal>
 				) : null}
@@ -50,6 +56,7 @@ const ModuleDash = ({ track, sprint }) => {
 							sprint={sprint}
 							track={track}
 							module={module}
+							refetch={refetch}
 						/>
 					))}
 				</div>

@@ -10,14 +10,17 @@ import { dash_item } from '../styles';
 import ModalContent from './ModalContent';
 import MarkDown from './MarkDown';
 
-const LessonItem = ({ track, sprint, module, lesson }) => {
+const LessonItem = ({ track, sprint, module, lesson, refetch }) => {
 	const [showModal, setModal] = useState(false);
 	const [deleteLesson, { loading, error, data }] = useMutation(DELETE_LESSON, {
 		variables: {
 			where: { name: lesson.name }
-			/*refetchQueries: [{ query: GET_TRACKS }] */
 		}
 	});
+	const _handleDelete = async () => {
+		await deleteLesson();
+		refetch();
+	};
 	return (
 		<div css={dash_item}>
 			<Link
@@ -40,6 +43,7 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 								setModal={setModal}
 								module={pageName(module)}
 								lesson={lesson}
+								refetch={refetch}
 							/>
 						}
 					/>
@@ -49,7 +53,7 @@ const LessonItem = ({ track, sprint, module, lesson }) => {
 				<button className="btn secondary" onClick={() => setModal(!showModal)}>
 					Edit Item
 				</button>
-				<button className="btn light" onClick={deleteLesson}>
+				<button className="btn light" onClick={_handleDelete}>
 					Delete Item
 				</button>
 			</div>

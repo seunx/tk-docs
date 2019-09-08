@@ -11,7 +11,7 @@ import { dash_container, dash_items, modal_content } from '../styles';
 
 const Dashboard = () => {
 	const [showModal, setModal] = useState(false);
-	const { loading, error, data } = useQuery(GET_TRACKS);
+	const { loading, error, data, refetch } = useQuery(GET_TRACKS);
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error...</p>;
 	return (
@@ -29,13 +29,13 @@ const Dashboard = () => {
 						<ModalContent
 							header="New Track"
 							setModal={setModal}
-							component={<CreateTrack setModal={setModal} />}
+							component={<CreateTrack setModal={setModal} refetch={refetch} />}
 						/>
 					</Modal>
 				) : null}
 				<div css={dash_items}>
 					{data.tracks.map(track => (
-						<TrackItem key={track.id} track={track} />
+						<TrackItem key={track.id} track={track} refetch={refetch} />
 					))}
 				</div>
 			</div>

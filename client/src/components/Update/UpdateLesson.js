@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { UPDATE_LESSON } from '../../gql';
 
-export const UpdateLesson = ({ setModal, module, lesson }) => {
+export const UpdateLesson = ({ setModal, module, lesson, refetch }) => {
 	const [info, updateInfo] = useState({
 		name: lesson.name,
 		description: lesson.description,
@@ -24,6 +24,7 @@ export const UpdateLesson = ({ setModal, module, lesson }) => {
 	};
 	const _handleClick = async e => {
 		await updateLesson();
+		refetch();
 		setModal(false);
 	};
 

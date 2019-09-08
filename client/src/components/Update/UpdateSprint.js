@@ -3,7 +3,13 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { UPDATE_SPRINT } from '../../gql';
 
-export const UpdateSprint = ({ setModal, track, sprint, description }) => {
+export const UpdateSprint = ({
+	setModal,
+	track,
+	sprint,
+	description,
+	refetch
+}) => {
 	const [info, updateInfo] = useState({
 		name: sprint,
 		description: description
@@ -19,6 +25,7 @@ export const UpdateSprint = ({ setModal, track, sprint, description }) => {
 	};
 	const _handleClick = async e => {
 		await updateSprint();
+		refetch();
 		setModal(false);
 	};
 	return (

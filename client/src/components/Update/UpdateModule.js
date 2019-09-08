@@ -3,7 +3,13 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { UPDATE_MODULE } from '../../gql';
 
-export const UpdateModule = ({ setModal, sprint, module, description }) => {
+export const UpdateModule = ({
+	setModal,
+	sprint,
+	module,
+	description,
+	refetch
+}) => {
 	const [info, updateInfo] = useState({
 		name: module,
 		description: description
@@ -19,6 +25,7 @@ export const UpdateModule = ({ setModal, sprint, module, description }) => {
 
 	const _handleClick = async e => {
 		await updateModule();
+		refetch();
 		setModal(false);
 	};
 	return (

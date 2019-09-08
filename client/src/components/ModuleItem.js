@@ -9,7 +9,7 @@ import { DELETE_MODULE } from '../gql';
 import { urlName, pageName, excerpt } from '../utils/index';
 import { dash_item } from '../styles';
 
-const ModuleItem = ({ track, sprint, module }) => {
+const ModuleItem = ({ track, sprint, module, refetch }) => {
 	const [showModal, setModal] = useState(false);
 	const [deleteModule, { loading, error, data }] = useMutation(DELETE_MODULE, {
 		variables: {
@@ -17,6 +17,10 @@ const ModuleItem = ({ track, sprint, module }) => {
 			/*refetchQueries: [{ query: GET_TRACKS }] */
 		}
 	});
+	const _handleDelete = async () => {
+		await deleteModule();
+		refetch();
+	};
 	return (
 		<div css={dash_item}>
 			<h4>
@@ -45,7 +49,7 @@ const ModuleItem = ({ track, sprint, module }) => {
 				<button className="btn secondary" onClick={() => setModal(!showModal)}>
 					Edit Item
 				</button>
-				<button className="btn light" onClick={deleteModule}>
+				<button className="btn light" onClick={_handleDelete}>
 					Delete Item
 				</button>
 			</div>

@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { CREATE_LESSON } from '../../gql';
 
-export const CreateLesson = ({ setModal, module }) => {
+export const CreateLesson = ({ setModal, module, refetch }) => {
 	const [info, updateInfo] = useState({
 		name: '',
 		description: '',
@@ -21,6 +21,7 @@ export const CreateLesson = ({ setModal, module }) => {
 	};
 	const _handleClick = async e => {
 		await createLesson();
+		refetch();
 		setModal(false);
 	};
 
