@@ -205,5 +205,4 @@ export const markdown = css`
 		list-style-type: disc;
 	}
 	padding: 0 0 0 2.5rem;
-	background-color: #fff;
 `;
