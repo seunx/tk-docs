@@ -30,6 +30,7 @@ export const UpdateLesson = ({ setModal, module, lesson, refetch }) => {
 
 	return (
 		<>
+			<label htmlFor="name">Name</label>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -37,22 +38,28 @@ export const UpdateLesson = ({ setModal, module, lesson, refetch }) => {
 				placeholder="Lesson Name"
 				value={info.name}
 			/>
+			<label htmlFor="module">Module</label>
+			<input type="text" name="lessonModule" value={module} disabled />
+			<label htmlFor="description">Description</label>
 			<textarea
+				className="area-lesson"
 				onChange={_handleChange}
 				type="text"
 				name="description"
 				placeholder="Description"
 				value={info.description}
 			/>
-			<input type="text" name="lessonModule" value={module} disabled />
 
+			<label htmlFor="objective">Objectives</label>
 			<textarea
+				className="area-lesson"
 				onChange={_handleChange}
 				type="text"
 				name="objective"
 				placeholder="Lesson Objectives"
 				value={info.objective}
 			/>
+			<label htmlFor="details">Details</label>
 			<textarea
 				onChange={_handleChange}
 				name="details"

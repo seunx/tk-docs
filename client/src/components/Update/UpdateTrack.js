@@ -23,6 +23,7 @@ export const UpdateTrack = ({ setModal, track, description, refetch }) => {
 	};
 	return (
 		<>
+			<label htmlFor="name">Name</label>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -30,6 +31,7 @@ export const UpdateTrack = ({ setModal, track, description, refetch }) => {
 				placeholder="Track Name"
 				value={info.name}
 			/>
+			<label htmlFor="description">Description</label>
 			<textarea
 				onChange={_handleChange}
 				type="text"

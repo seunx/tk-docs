@@ -27,34 +27,33 @@ export const CreateLesson = ({ setModal, module, refetch }) => {
 
 	return (
 		<>
+			<label htmlFor="name">Name</label>
 			<input
 				onChange={_handleChange}
 				type="text"
 				name="name"
-				placeholder="Lesson Name"
 				value={info.name}
 			/>
+			<label htmlFor="module">Module</label>
+			<input type="text" name="lessonModule" value={module} disabled />
+			<label htmlFor="description">Description</label>
 			<textarea
+				className="area-lesson"
 				onChange={_handleChange}
 				type="text"
 				name="description"
-				placeholder="Description"
 				value={info.description}
 			/>
-			<input type="text" name="lessonModule" value={module} disabled />
+			<label htmlFor="objectives">Objectives</label>
 			<textarea
+				className="area-lesson"
 				onChange={_handleChange}
 				type="text"
 				name="objective"
-				placeholder="Lesson Objectives"
 				value={info.objective}
 			/>
-			<textarea
-				onChange={_handleChange}
-				name="details"
-				placeholder="Lesson Details"
-				value={info.details}
-			/>
+			<label htmlFor="details">Details</label>
+			<textarea onChange={_handleChange} name="details" value={info.details} />
 			<div className="btn-container">
 				<button className="btn primary" onClick={_handleClick}>
 					Create

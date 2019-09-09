@@ -32,7 +32,7 @@ const Track = ({ track }) => {
 								<Link to={`/course/${track}/${urlName(module.name)}`}>
 									<h4>{module.name}</h4>
 								</Link>
-								<p>{module.description}</p>
+								<MarkDown content={module.description} />
 							</div>
 						))}
 					</div>

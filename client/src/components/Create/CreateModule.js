@@ -33,6 +33,7 @@ export const CreateModule = ({ setModal, sprint, refetch }) => {
 				placeholder="Module Name"
 				value={info.name}
 			/>
+			<label htmlFor="sprint">Sprint</label>
 			<input
 				type="text"
 				name="moduleSprint"

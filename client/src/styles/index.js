@@ -163,12 +163,21 @@ export const modal_content = css`
 	flex-direction: column;
 	background-color: #fff;
 	/* max-width: 900px; */
+	height: auto;
 	padding: 30px 40px;
 	border-radius: 5px;
 	text-align: center;
 
 	h3 {
 		margin-bottom: 1rem;
+	}
+	label {
+		text-align: left;
+		padding-bottom: 2px;
+		font-size: 1.5rem;
+		font-weight: 200;
+		color: #333;
+		opacity: 0.6;
 	}
 	input {
 		font-size: 1.5rem;
@@ -180,11 +189,17 @@ export const modal_content = css`
 		background-color: #f0f4f7;
 		outline: none;
 	}
+	input:disabled {
+		border: none;
+		color: lightgray;
+		background: none;
+	}
 	textarea {
 		width: 600px;
-		height: 244px;
-		font-size: 1.5rem;
+		height: 144px;
+		font-size: 1rem;
 		padding: 5px 0 0 10px;
+		margin-bottom: 1rem;
 		border: none;
 		border-radius: 3px;
 		border-bottom: 2px solid #bb1333;
@@ -197,6 +212,9 @@ export const modal_content = css`
 		display: flex;
 		padding: 15px 0;
 	}
+	.area-lesson {
+		height: 100px;
+	}
 `;
 
 export const markdown = css`
@@ -204,5 +222,5 @@ export const markdown = css`
 	li {
 		list-style-type: disc;
 	}
-	padding: 0 0 0 2.5rem;
+	/* padding: 0 0 0 2.5rem; */
 `;

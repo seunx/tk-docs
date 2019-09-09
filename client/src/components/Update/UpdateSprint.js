@@ -30,6 +30,7 @@ export const UpdateSprint = ({
 	};
 	return (
 		<>
+			<label htmlFor="name">Name</label>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -37,6 +38,7 @@ export const UpdateSprint = ({
 				placeholder="Sprint Name"
 				value={info.name}
 			/>
+			<label htmlFor="track">Track</label>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -44,6 +46,7 @@ export const UpdateSprint = ({
 				disabled
 				value={track}
 			/>
+			<label htmlFor="description">Description</label>
 			<textarea
 				onChange={_handleChange}
 				type="text"

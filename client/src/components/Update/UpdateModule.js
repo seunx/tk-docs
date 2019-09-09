@@ -30,6 +30,7 @@ export const UpdateModule = ({
 	};
 	return (
 		<>
+			<label htmlFor="name">Name</label>
 			<input
 				onChange={_handleChange}
 				type="text"
@@ -37,7 +38,9 @@ export const UpdateModule = ({
 				placeholder="Module Name"
 				value={info.name}
 			/>
+			<label htmlFor="sprint">Sprint</label>
 			<input type="text" name="moduleSprint" value={sprint} disabled />
+			<label htmlFor="description">Description</label>
 			<textarea
 				onChange={_handleChange}
 				type="text"

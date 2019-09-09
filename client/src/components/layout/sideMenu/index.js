@@ -6,7 +6,6 @@ import { GET_TRACK } from '../../../gql';
 import { side_menu } from '../../../styles';
 
 const index = props => {
-	const [search, setSearch] = useState('');
 	const { loading, error, data } = useQuery(GET_TRACK, {
 		variables: {
 			where: { name: props.track }

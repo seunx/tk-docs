@@ -34,6 +34,7 @@ export const CreateSprint = ({ setModal, track, refetch }) => {
 				placeholder="Sprint Name"
 				value={info.name}
 			/>
+			<label htmlFor="track">Track</label>
 			<input type="text" name="track" value={pageName(track)} disabled />
 			<textarea
 				onChange={_handleChange}
